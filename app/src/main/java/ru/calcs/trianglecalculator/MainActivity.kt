@@ -3,6 +3,9 @@ package ru.calcs.trianglecalculator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequest
@@ -13,11 +16,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var bottomSheetBehavior : BottomSheetBehavior<CoordinatorLayout>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initMobileAdsYandex()
         loadAndShowBanner()
+        bottomSheetBehavior = BottomSheetBehavior.from(main_bottom_sheets)
+
+
+
+
+
+
+
+        btn_test_bottom.setOnClickListener {
+            onClickBtnTestBottomSheet()
+        }
     }
 
 
@@ -54,5 +70,17 @@ class MainActivity : AppCompatActivity() {
         adViewYandex.loadAd(adRequest)
     }
 
+    var index = 0
+    fun onClickBtnTestBottomSheet(){
+        when{
+            index == 0 -> {bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED}
+            index == 1 -> {bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED}
+            index == 2 -> {bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN}
+            index == 3 -> {bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED}
+        }
+        Log.d("MyLog", index.toString())
+        index++
+        if(index==4){index=0}
+    }
 
 }

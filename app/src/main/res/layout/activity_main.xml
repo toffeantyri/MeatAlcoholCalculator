@@ -7,12 +7,26 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <com.yandex.mobile.ads.banner.BannerAdView
         android:id="@+id/adViewYandex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
+    <Button
+        android:id="@+id/btn_test_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button1"/>
+
+</LinearLayout>
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:background="@color/cardview_light_background"
@@ -21,8 +35,8 @@
         android:id="@+id/main_bottom_sheets"
         android:elevation="20dp"
         style="?attr/bottomSheetStyle"
-        app:behavior_hideable="false"
-        app:behavior_peekHeight="50dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="20dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:layout_gravity="end"
         >
@@ -37,66 +51,42 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/bottomsheet_oval_swiper"
                 android:layout_marginVertical="10dp"/>
-            <ImageView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
+                android:text="123"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_exit_to_app_black_24dp"/>
-
+                android:text="123"/>
 
 
 
