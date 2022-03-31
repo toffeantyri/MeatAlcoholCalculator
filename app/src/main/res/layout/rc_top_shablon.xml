@@ -52,7 +52,7 @@
                         android:id="@+id/l_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/meat_all"
+                        android:drawableStart="@drawable/meatall"
                         android:text="@string/all_meat"/>
 
                     <RadioButton

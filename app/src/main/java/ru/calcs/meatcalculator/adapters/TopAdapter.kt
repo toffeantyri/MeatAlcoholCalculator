@@ -49,7 +49,7 @@ class TopAdapter(dataModel: DataModelView) :
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return 2
     }
 
     fun onClickBtnTestBottomSheet() {
