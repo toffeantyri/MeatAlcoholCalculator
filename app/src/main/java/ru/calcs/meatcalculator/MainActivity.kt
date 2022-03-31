@@ -14,6 +14,7 @@ import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.common.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.calcs.meatcalculator.adapters.ShablonDataList
 import ru.calcs.meatcalculator.adapters.TopAdapter
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>
     lateinit var adapterTop: TopAdapter
     val dataModel: DataModelView by viewModels()
+    val listRc : ArrayList<ShablonDataList> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
         dataModel.stateBottomSheetBehavior.observe(this, { bottomSheetBehavior.state = it })
 
+        Thread{
+
+
+        }.run()
 
 
         Log.d(TAG, "onCreate")
@@ -125,6 +131,55 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
     }
+
+
+    fun builderListOfShablonClass(){
+        val l1 = ShablonDataList()
+        val l2 = ShablonDataList()
+    l1.apply {
+        mainTitle = getString(R.string.title_item_rctop)
+        column1Title = getString(R.string.title_column1)
+        column2Title = getString(R.string.title_column2)
+
+        c1radio1 = getString(R.string.all_meat)
+        c1radio2 = getString(R.string.chicken)
+        c1radio3 = getString(R.string.pig)
+        c1radio4 = getString(R.string.muu)
+
+        c1radio1Image = R.drawable.meatall
+        c1radio2Image = R.drawable.chicken1
+        c1radio3Image = R.drawable.pig1
+        c1radio4Image = R.drawable.muu1
+
+        c2radio1 = getString(R.string.time_low)
+        c2radio2 = getString(R.string.time_med)
+        c2radio3 = getString(R.string.time_max)
+        c2radio4 = getString(R.string.time_over)
+    }
+        l2.apply {
+            mainTitle = getString(R.string.title_item_rctop_alco)
+            column1Title = getString(R.string.title_column1_alco)
+            column2Title = getString(R.string.title_column2_alco)
+
+            c1radio1 = getString(R.string.all_alco)
+            c1radio2 = getString(R.string.bear)
+            c1radio3 = getString(R.string.vine)
+            c1radio4 = getString(R.string.vodka)
+
+            c1radio1Image = R.drawable.meatall
+            c1radio2Image = R.drawable.bear1
+            c1radio3Image = R.drawable.vine
+            c1radio4Image = R.drawable.cognac
+
+            c2radio1 = getString(R.string.alco_low)
+            c2radio2 = getString(R.string.alco_med)
+            c2radio3 = getString(R.string.alco_max)
+            c2radio4 = getString(R.string.alco_over)
+        }
+
+
+    }
+
 
 
 }

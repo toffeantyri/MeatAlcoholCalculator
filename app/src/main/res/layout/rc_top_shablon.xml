@@ -17,24 +17,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/main_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Расчёт мяса"
-                android:textSize="18sp"
+                android:gravity="center_horizontal"
+                android:text="@string/title_item_rctop"
                 android:textColor="@color/black"
-                android:gravity="center_horizontal"/>
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingStart="10dp"
-                >
+                android:paddingStart="10dp">
+
                 <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -44,36 +44,36 @@
                         android:id="@+id/left_radio_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Какое мясо?"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_column1" />
 
                     <RadioButton
                         android:id="@+id/l_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/meatall"
-                        android:text="@string/all_meat"/>
+                        android:text="@string/all_meat" />
 
                     <RadioButton
                         android:id="@+id/l_radio_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/chicken"
-                        android:drawableStart="@drawable/chicken1"/>
+                        android:drawableStart="@drawable/chicken1"
+                        android:text="@string/chicken" />
 
                     <RadioButton
                         android:id="@+id/l_radio_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/pig"
-                        android:drawableStart="@drawable/pig1"/>
+                        android:drawableStart="@drawable/pig1"
+                        android:text="@string/pig" />
 
                     <RadioButton
                         android:id="@+id/l_radio_4"
-                        android:drawableStart="@drawable/muu1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/muu1"
                         android:text="@string/muu" />
                 </RadioGroup>
 
@@ -86,16 +86,15 @@
                         android:id="@+id/right_radio_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Как долго?"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_column2" />
 
                     <RadioButton
                         android:id="@+id/r_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/time_low"
-                        />
+                        android:text="@string/time_low" />
 
                     <RadioButton
                         android:id="@+id/r_radio_2"
@@ -117,19 +116,31 @@
                 </RadioGroup>
 
             </LinearLayout>
-            <EditText
-                android:id="@+id/et_test"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ed_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/people_count" />
+                android:gravity="center"
+                android:hint="@string/people_count"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_ppl_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/people_count"
+                android:inputType="number"
+                android:textSize="16sp"
 
+                />
+            </com.google.android.material.textfield.TextInputLayout>
             <Button
-                android:id="@+id/btn_test_get"
+                android:id="@+id/btn_get_measure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center_horizontal"
-                android:text="@string/measuring_btn"
-                android:layout_gravity="center_horizontal"/>
+                android:text="@string/measuring_btn" />
         </LinearLayout>
 
 

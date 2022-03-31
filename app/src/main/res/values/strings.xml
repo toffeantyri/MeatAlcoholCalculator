@@ -9,21 +9,35 @@
     <string name="main_title_text_choose">Листай-Выбирай:</string>
     <string name="measuring_btn">Рассчитать</string>
 
+    <string name="title_item_rctop">Расчёт мяса</string>
+    <string name="title_item_rctop_alco">Расчёт алкоголя</string>
+
+    <string name="title_column1">Какое мясо?</string>
     <string name="all_meat">\ Любое мясо</string>
     <string name="chicken">\ Курица</string>
     <string name="pig">\ Свинина</string>
     <string name="muu">\ Говядина</string>
 
+    <string name="title_column1_alco">Какое Алкоголь?</string>
+    <string name="all_alco">\ Любой</string>
+    <string name="bear">\ Пиво</string>
+    <string name="vine">\ Вино - Шампанское</string>
+    <string name="vodka">\ Крепкие напитки</string>
+
+    <string name="title_column2">Как долго?</string>
     <string name="time_low">Посидим–поедим(2-3 часа)</string>
     <string name="time_med">Отдохнем (4-6 часов)</string>
     <string name="time_max">Зажгём (7-10 часов)</string>
     <string name="time_over">Пока мангал не развалится(Сутки)</string>
 
+    <string name="title_column2_alco">Уровень опьянения?</string>
+    <string name="alco_low">Посидеть поговорить</string>
+    <string name="alco_med">Выпить потанцевать</string>
+    <string name="alco_max">Напиться и пошуметь</string>
+    <string name="alco_over">Очнуться только завтра</string>
+
     <string name="people_count">Количество человек</string>
 
 
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

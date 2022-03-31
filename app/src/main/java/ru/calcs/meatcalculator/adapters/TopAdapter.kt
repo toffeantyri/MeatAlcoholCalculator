@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textview.MaterialTextView
 import ru.calcs.meatcalculator.MainActivity
 import ru.calcs.meatcalculator.OwnerInterface
 import ru.calcs.meatcalculator.R
@@ -22,8 +26,19 @@ class TopAdapter(dataModel: DataModelView) :
     val list: ArrayList<String> = arrayListOf()
 
     inner class TopHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val edText = itemView.findViewById<EditText>(R.id.et_test)
-        val btn = itemView.findViewById<Button>(R.id.btn_test_get)
+        val title = itemView.findViewById<TextView>(R.id.main_title)
+        val edText = itemView.findViewById<TextInputEditText>(R.id.ed_ppl_count)
+        val btn = itemView.findViewById<Button>(R.id.btn_get_measure)
+        val column1_title = itemView.findViewById<TextView>(R.id.left_radio_title)
+        val c1_r1 = itemView.findViewById<RadioButton>(R.id.l_radio_1)
+        val c1_r2 = itemView.findViewById<RadioButton>(R.id.l_radio_2)
+        val c1_r3 = itemView.findViewById<RadioButton>(R.id.l_radio_3)
+        val c1_r4 = itemView.findViewById<RadioButton>(R.id.l_radio_4)
+        val column2_title = itemView.findViewById<TextView>(R.id.right_radio_title)
+        val c2_r1 = itemView.findViewById<RadioButton>(R.id.r_radio_1)
+        val c2_r2 = itemView.findViewById<RadioButton>(R.id.r_radio_2)
+        val c2_r3 = itemView.findViewById<RadioButton>(R.id.r_radio_3)
+        val c2_r4 = itemView.findViewById<RadioButton>(R.id.r_radio_4)
 
         fun bindView(position: Int) {
 
