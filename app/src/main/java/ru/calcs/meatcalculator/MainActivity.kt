@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun builderListOfShablonClass(){
+    fun ArrayList<ShablonDataList>.builderListOfShablonClass() : ArrayList<ShablonDataList>{
         val l1 = ShablonDataList()
         val l2 = ShablonDataList()
     l1.apply {
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
             c1radio3 = getString(R.string.vine)
             c1radio4 = getString(R.string.vodka)
 
-            c1radio1Image = R.drawable.meatall
+            c1radio1Image = R.drawable.allalco
             c1radio2Image = R.drawable.bear1
             c1radio3Image = R.drawable.vine
             c1radio4Image = R.drawable.cognac
@@ -176,8 +176,7 @@ class MainActivity : AppCompatActivity() {
             c2radio3 = getString(R.string.alco_max)
             c2radio4 = getString(R.string.alco_over)
         }
-
-
+        return arrayListOf(l1,l2)
     }
 
 
