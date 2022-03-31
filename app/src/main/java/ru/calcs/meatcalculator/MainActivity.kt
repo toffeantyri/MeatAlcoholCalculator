@@ -1,4 +1,4 @@
-package ru.calcs.trianglecalculator
+package ru.calcs.meatcalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
