@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="20dp"
+
+        >
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:useDefaultMargins="true"
+            android:paddingStart="10dp"
+
+            >
+            <RadioButton
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_meat"/>
+            <RadioButton
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_meat"/>
+            <RadioButton
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_meat"/>
+            <RadioButton
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_meat"/>
+
+            <EditText
+                android:id="@+id/et_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="test"/>
+
+            <Button
+                android:id="@+id/btn_test_get"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="btn"/>
+        </GridLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

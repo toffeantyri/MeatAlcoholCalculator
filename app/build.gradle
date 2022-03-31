@@ -45,4 +45,8 @@ dependencies {
 
     implementation 'com.yandex.android:mobileads:5.0.0-alpha.2'
     implementation 'com.yandex.android:mobmetricalib:4.1.1'
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 }

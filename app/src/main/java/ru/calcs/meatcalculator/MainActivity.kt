@@ -3,8 +3,14 @@ package ru.calcs.meatcalculator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
@@ -12,11 +18,18 @@ import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.impl.it
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.calcs.meatcalculator.adapters.DownAdapter
+import ru.calcs.meatcalculator.adapters.TopAdapter
+import ru.calcs.meatcalculator.viewmodel.DataModelView
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var bottomSheetBehavior : BottomSheetBehavior<CoordinatorLayout>
+    lateinit var adapterTop: TopAdapter
+    lateinit var adapterDown: DownAdapter
+    val dataModel: DataModelView by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         initMobileAdsYandex()
         loadAndShowBanner()
         bottomSheetBehavior = BottomSheetBehavior.from(main_bottom_sheets)
+        initTopRV()
+        initDownRV()
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
 
 
@@ -35,8 +51,6 @@ class MainActivity : AppCompatActivity() {
             onClickBtnTestBottomSheet()
         }
     }
-
-
 
 
 
@@ -81,6 +95,25 @@ class MainActivity : AppCompatActivity() {
         Log.d("MyLog", index.toString())
         index++
         if(index==4){index=0}
+    }
+
+
+    fun initTopRV(){
+        adapterTop = TopAdapter(bottomSheetBehavior)
+        rcView_TopSelector.apply {
+           layoutManager =  LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+           adapter = adapterTop
+           setHasFixedSize(true)
+        }
+    }
+
+    fun initDownRV(){
+        adapterDown = DownAdapter(bottomSheetBehavior)
+        rcView_DownSelector.apply {
+            layoutManager =  LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = adapterDown
+            setHasFixedSize(true)
+        }
     }
 
 }

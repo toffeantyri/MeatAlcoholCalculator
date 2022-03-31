@@ -4,4 +4,9 @@
 
     <string name="yandex_banner_id_test" translatable="false">R-M-DEMO-320x50</string>
     <string name="yandex_banner_id" translatable="false"></string>
+
+
+
+
+    <string name="all_meat">Любое мясо</string>
 </resources>
