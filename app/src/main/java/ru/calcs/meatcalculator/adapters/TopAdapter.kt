@@ -7,26 +7,29 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import ru.calcs.meatcalculator.MainActivity
+import ru.calcs.meatcalculator.OwnerInterface
 import ru.calcs.meatcalculator.R
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
-class TopAdapter(bottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>) : RecyclerView.Adapter<TopAdapter.TopHolder>() {
+class TopAdapter(dataModel: DataModelView) :
+    RecyclerView.Adapter<TopAdapter.TopHolder>() {
+    val dataModelInner = dataModel
 
-    val bsb = bottomSheetBehavior
-
-    val list : ArrayList<String> = arrayListOf()
+    val list: ArrayList<String> = arrayListOf()
 
     inner class TopHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val edText = itemView.findViewById<EditText>(R.id.et_test)
         val btn = itemView.findViewById<Button>(R.id.btn_test_get)
 
-        fun bindView(position: Int){
+        fun bindView(position: Int) {
 
         }
 
-        fun bindTap(position: Int){
+        fun bindTap(position: Int) {
             btn.setOnClickListener {
                 onClickBtnTestBottomSheet()
             }
@@ -49,13 +52,15 @@ class TopAdapter(bottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>) : 
         return 5
     }
 
-    fun onClickBtnTestBottomSheet(){
-        if (bsb.state == BottomSheetBehavior.STATE_EXPANDED){
-            bsb.state = BottomSheetBehavior.STATE_COLLAPSED
-        } else { bsb.state = BottomSheetBehavior.STATE_EXPANDED}
+    fun onClickBtnTestBottomSheet() {
+        val i = dataModelInner.stateBottomSheetBehavior.value
+        Log.d("MyLog", i.toString())
+        if (i == BottomSheetBehavior.STATE_EXPANDED) {
+            dataModelInner.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_COLLAPSED
+        } else {dataModelInner.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_EXPANDED}
+
 
     }
-
 
 
 }

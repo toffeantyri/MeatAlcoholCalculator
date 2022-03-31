@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         initTopRV()
         initDownRV()
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        dataModel.stateBottomSheetBehavior.observe(this, {bottomSheetBehavior.state=it})
 
 
 
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun initTopRV(){
-        adapterTop = TopAdapter(bottomSheetBehavior)
+        adapterTop = TopAdapter(dataModel)
         rcView_TopSelector.apply {
            layoutManager =  LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
            adapter = adapterTop
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initDownRV(){
-        adapterDown = DownAdapter(bottomSheetBehavior)
+        adapterDown = DownAdapter(dataModel)
         rcView_DownSelector.apply {
             layoutManager =  LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterDown

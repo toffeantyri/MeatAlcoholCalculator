@@ -13,21 +13,22 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.calcs.meatcalculator.R
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
-class DownAdapter(bottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>) : RecyclerView.Adapter<DownAdapter.DownHolder>() {
+class DownAdapter(dataModelView: DataModelView) :
+    RecyclerView.Adapter<DownAdapter.DownHolder>() {
 
-    val list : ArrayList<String> = arrayListOf()
+    val list: ArrayList<String> = arrayListOf()
 
     inner class DownHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindView(position: Int){
+        fun bindView(position: Int) {
 
         }
 
-        fun bindTap(position: Int){
-
-            }
+        fun bindTap(position: Int) {
 
         }
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownHolder {
         val view = LayoutInflater.from(parent.context)
