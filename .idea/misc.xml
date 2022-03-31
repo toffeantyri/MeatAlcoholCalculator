@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Adm/AndroidStudioProjects/TriangleCalc/app/src/main/res/drawable/all_meat_select.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/Adm/AndroidStudioProjects/TriangleCalc/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Adm/AndroidStudioProjects/TriangleCalc/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.35885416666666664" />
+        <entry key="..\:/Users/Adm/AndroidStudioProjects/TriangleCalc/app/src/main/res/layout/rc_top_shablon.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

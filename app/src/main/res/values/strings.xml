@@ -6,7 +6,23 @@
     <string name="yandex_banner_id" translatable="false"></string>
 
 
-    <string name="all_meat">Любое мясо</string>
+    <string name="main_title_text_choose">Выбери:</string>
+    <string name="measuring_btn">Рассчитать</string>
+
+    <string name="all_meat">\ Любое мясо</string>
+    <string name="chicken">\ Курица</string>
+    <string name="pig">\ Свинина</string>
+    <string name="muu">\ Говядина</string>
+
+    <string name="time_low">Посидим–поедим(2-3 часа)</string>
+    <string name="time_med">Отдохнем (4-6 часов)</string>
+    <string name="time_max">Зажгём (7-10 часов)</string>
+    <string name="time_over">Пока мангал не развалится(Сутки)</string>
+
+    <string name="people_count">Количество человек</string>
+
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

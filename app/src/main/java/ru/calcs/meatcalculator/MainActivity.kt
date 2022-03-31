@@ -35,15 +35,15 @@ class MainActivity : AppCompatActivity() {
         dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
 
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.bottom_sheet_frame, BottomSheetFragment()).commit()
 
+    }
 
-
-
-
-
-
+    override fun onResume() {
+        super.onResume()
+        Thread{
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.bottom_sheet_frame, ru.calcs.meatcalculator.BottomSheetFragment()).commit()
+        }.run()
     }
 
 
