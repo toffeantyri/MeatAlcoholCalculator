@@ -54,7 +54,6 @@ class TopAdapter(dataModel: DataModelView) :
 
     fun onClickBtnTestBottomSheet() {
         val i = dataModelInner.stateBottomSheetBehavior.value
-        Log.d("MyLog", i.toString())
         if (i == BottomSheetBehavior.STATE_EXPANDED) {
             dataModelInner.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_COLLAPSED
         } else {dataModelInner.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_EXPANDED}
