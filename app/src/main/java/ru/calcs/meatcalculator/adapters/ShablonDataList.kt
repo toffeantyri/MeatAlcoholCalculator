@@ -1,6 +1,6 @@
 package ru.calcs.meatcalculator.adapters
 
-class ShablonDataList{
+data class ShablonDataList(val p0 : String) {
 
     var mainTitle : String = ""
     var column1Title : String = ""

@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.yandex.mobile.ads.banner.AdSize
@@ -14,6 +16,10 @@ import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.common.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import ru.calcs.meatcalculator.adapters.ShablonDataList
 import ru.calcs.meatcalculator.adapters.TopAdapter
 import ru.calcs.meatcalculator.viewmodel.DataModelView
@@ -25,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var adapterTop: TopAdapter
     val dataModel: DataModelView by viewModels()
     val listRc : ArrayList<ShablonDataList> = arrayListOf()
+    private var job: Job? = null // для корутины на запуске
+    private var job1: Job? = null // для корутины
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +42,7 @@ class MainActivity : AppCompatActivity() {
         bottomSheetBehavior = BottomSheetBehavior.from(main_bottom_sheets)
         dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
         dataModel.stateBottomSheetBehavior.observe(this, { bottomSheetBehavior.state = it })
-
-        Thread{
-
-
-        }.run()
+        initTopRV()
 
 
         Log.d(TAG, "onCreate")
@@ -52,15 +56,22 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         Log.d(TAG, "OnResume")
         super.onResume()
-        Thread {
-            initTopRV()
+        job = CoroutineScope(Dispatchers.IO).launch {
+            Log.d(TAG, job.toString())
+
+            if(adapterTop.list.isEmpty()){
+                Log.d(TAG, "builder + updater adapter : ${adapterTop.list.size}")
+            listRc.builderListOfShablonClass()
+            adapterTop.updateAdapter(listRc)
+            }
+
             if (supportFragmentManager.findFragmentById(R.id.bottom_sheet_frame) == null) {
                 Log.d(TAG, "Fragment replased")
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.bottom_sheet_frame, ru.calcs.meatcalculator.BottomSheetFragment())
                     .commit()
             }
-        }.run()
+        }
     }
 
 
@@ -69,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadAndShowBanner() {
+        adViewYandex.isActivated
         adViewYandex.apply {
             setAdSize(AdSize.BANNER_320x50)
             setAdUnitId(getString(R.string.yandex_banner_id_test))
@@ -99,44 +111,25 @@ class MainActivity : AppCompatActivity() {
         adViewYandex.loadAd(adRequest)
     }
 
-    var index = 0
-    fun onClickBtnTestBottomSheet() {
-        when {
-            index == 0 -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
-            index == 1 -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-            }
-            index == 2 -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-            }
-            index == 3 -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
-        }
-        Log.d("MyLog", index.toString())
-        index++
-        if (index == 4) {
-            index = 0
-        }
-    }
-
     fun initTopRV() {
-        adapterTop = TopAdapter(dataModel)
-        rcView_TopSelector.apply {
-            layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = adapterTop
-            setHasFixedSize(true)
-        }
+        if(this::adapterTop.isLateinit){
+        adapterTop = TopAdapter(dataModel)}
+        if (rcView_TopSelector.isEmpty())
+        {Log.d(TAG, "init rc")
+            rcView_TopSelector.apply {
+                layoutManager =
+                    LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+                adapter = adapterTop
+                setHasFixedSize(true)
+            }
+    }
     }
 
+    fun ArrayList<ShablonDataList>.builderListOfShablonClass(){
+        val l1 = ShablonDataList("0")
+        val l2 = ShablonDataList("1")
 
-    fun ArrayList<ShablonDataList>.builderListOfShablonClass() : ArrayList<ShablonDataList>{
-        val l1 = ShablonDataList()
-        val l2 = ShablonDataList()
-    l1.apply {
+        l1.apply {
         mainTitle = getString(R.string.title_item_rctop)
         column1Title = getString(R.string.title_column1)
         column2Title = getString(R.string.title_column2)
@@ -176,7 +169,9 @@ class MainActivity : AppCompatActivity() {
             c2radio3 = getString(R.string.alco_max)
             c2radio4 = getString(R.string.alco_over)
         }
-        return arrayListOf(l1,l2)
+
+        this.add(l1)
+        this.add(l2)
     }
 
 

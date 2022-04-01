@@ -13,16 +13,16 @@
     <string name="title_item_rctop_alco">Расчёт алкоголя</string>
 
     <string name="title_column1">Какое мясо?</string>
-    <string name="all_meat">\ Любое мясо</string>
+    <string name="all_meat">\ Любое</string>
     <string name="chicken">\ Курица</string>
     <string name="pig">\ Свинина</string>
     <string name="muu">\ Говядина</string>
 
-    <string name="title_column1_alco">Какое Алкоголь?</string>
+    <string name="title_column1_alco">Какой Алкоголь?</string>
     <string name="all_alco">\ Любой</string>
     <string name="bear">\ Пиво</string>
-    <string name="vine">\ Вино - Шампанское</string>
-    <string name="vodka">\ Крепкие напитки</string>
+    <string name="vine">\ Вино</string>
+    <string name="vodka">\ Крепкие</string>
 
     <string name="title_column2">Как долго?</string>
     <string name="time_low">Посидим–поедим(2-3 часа)</string>
