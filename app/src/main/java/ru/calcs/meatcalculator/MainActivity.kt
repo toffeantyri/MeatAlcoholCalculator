@@ -144,10 +144,10 @@ class MainActivity : AppCompatActivity() {
             c1radio3 = getString(R.string.pig)
             c1radio4 = getString(R.string.muu)
 
-            c1radio1Image = R.drawable.meatall
-            c1radio2Image = R.drawable.chicken1
-            c1radio3Image = R.drawable.pig1
-            c1radio4Image = R.drawable.muu1
+            c1radio1Image = R.drawable.ic_meatall
+            c1radio2Image = R.drawable.ic_chicken
+            c1radio3Image = R.drawable.ic_pig
+            c1radio4Image = R.drawable.ic_muu
 
             c2radio1 = getString(R.string.time_low)
             c2radio2 = getString(R.string.time_med)
@@ -164,10 +164,10 @@ class MainActivity : AppCompatActivity() {
             c1radio3 = getString(R.string.vine)
             c1radio4 = getString(R.string.vodka)
 
-            c1radio1Image = R.drawable.allalco
-            c1radio2Image = R.drawable.bear1
-            c1radio3Image = R.drawable.vine
-            c1radio4Image = R.drawable.cognac
+            c1radio1Image = R.drawable.ic_allalco
+            c1radio2Image = R.drawable.ic_bear
+            c1radio3Image = R.drawable.ic_vine
+            c1radio4Image = R.drawable.ic_cognac
 
             c2radio1 = getString(R.string.alco_low)
             c2radio2 = getString(R.string.alco_med)

@@ -37,7 +37,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/meatall" />
+                android:src="@drawable/ic_meatall" />
         </LinearLayout>
 
         <LinearLayout
@@ -59,7 +59,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/bread1" />
+                android:src="@drawable/ic_bread" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +81,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/meatall" />
+                android:src="@drawable/ic_vegetable" />
         </LinearLayout>
 
 

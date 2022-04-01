@@ -57,28 +57,28 @@
                         android:id="@+id/l_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/meatall"
+                        android:drawableStart="@drawable/ic_meatall"
                         android:text="@string/all_meat" />
 
                     <RadioButton
                         android:id="@+id/l_radio_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/chicken1"
+                        android:drawableStart="@drawable/ic_chicken"
                         android:text="@string/chicken" />
 
                     <RadioButton
                         android:id="@+id/l_radio_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/pig1"
+                        android:drawableStart="@drawable/ic_pig"
                         android:text="@string/pig" />
 
                     <RadioButton
                         android:id="@+id/l_radio_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/muu1"
+                        android:drawableStart="@drawable/ic_muu"
                         android:text="@string/muu" />
                 </RadioGroup>
 

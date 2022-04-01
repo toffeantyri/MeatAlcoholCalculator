@@ -37,7 +37,7 @@ class DataModelView : ViewModel() {
     }
 
     init {
-        result_title_bread_image.value = R.drawable.bread1
+        result_title_bread_image.value = R.drawable.ic_bread
     }
 
     val result_value_bread: MutableLiveData<String> by lazy {
@@ -64,7 +64,7 @@ class DataModelView : ViewModel() {
     }
 
     init {
-        result_title_veget_image.value = R.drawable.bread1
+        result_title_veget_image.value = R.drawable.ic_bread
     }
 
 
