@@ -10,15 +10,19 @@ class DataModelView : ViewModel() {
     val stateBottomSheetBehavior: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>()
     }
-
     init {
         stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
+    }
+
+    val main_titleResult_x_people : MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
     }
 
     val result_title_meat: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
-    val result_title_meat_image: MutableLiveData<Int> by lazy {
+
+    val result_title_value_image: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>()
     }
     val result_value_meat: MutableLiveData<String> by lazy {
@@ -46,9 +50,7 @@ class DataModelView : ViewModel() {
     val result_value_alco: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
-    val result_title_alco_image: MutableLiveData<Int> by lazy {
-        MutableLiveData<Int>()
-    }
+
 
 
     val result_title_veget: MutableLiveData<String> by lazy {

@@ -44,7 +44,10 @@
 
     <string name="people_count">Количество человек</string>
 
-    <string name="RESULT_DESC_ITOGO">Итого на X человек понадобится:</string>
+    <string name="RESULT_DESC_ITOGO1">Итого на \ </string>
+    <string name="RESULT_DESC_ITOGO2">\ понадобиться: </string>
+    <string name="RESULT_DESC_ITOGO_people">\ человека</string>
+    <string name="RESULT_DESC_ITOGO_peoples">\ человек</string>
 
 
 

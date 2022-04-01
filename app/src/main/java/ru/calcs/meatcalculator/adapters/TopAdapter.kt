@@ -75,9 +75,11 @@ class TopAdapter(dataModel: DataModelView) :
                         radioGroup1.checkedRadioButtonId,
                         radioGroup2.checkedRadioButtonId,
                     )
+                    dataModelInner.main_titleResult_x_people.value = edText.text.toString()
+                    //dataModelInner.result_title_value_image.value = radioGroup1.checkedRadioButtonId
                     onClickBtnTestBottomSheet()
                 } else {
-                    edLayout.error = "Количество?"
+                    edLayout.error = "Введите количество человек"
                 }
 
             }
