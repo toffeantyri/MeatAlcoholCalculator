@@ -20,8 +20,8 @@ class TopAdapter(dataModel: DataModelView) :
     val dataModelInner = dataModel
     val list: ArrayList<ShablonDataList> = arrayListOf()
 
-    val listIdColumnRadio1 : ArrayList<Int> = arrayListOf()
-    val listIdColumnRadio2 : ArrayList<Int> = arrayListOf()
+    val listIdColumnRadio1: ArrayList<Int> = arrayListOf()
+    val listIdColumnRadio2: ArrayList<Int> = arrayListOf()
 
 
     inner class TopHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -63,17 +63,19 @@ class TopAdapter(dataModel: DataModelView) :
 
         fun bindTap(position: Int) {
             btn.setOnClickListener {
-                listIdColumnRadio1.addAll(arrayOf(c1_r1.id,c1_r2.id,c1_r3.id,c1_r4.id,))
-                listIdColumnRadio2.addAll(arrayOf(c2_r1.id,c2_r2.id,c2_r3.id,c2_r4.id,))
-                if(edText.text.toString() != "") {
-                    howManyMeat(
+                listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
+                listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
+                if (edText.text.toString() != "" && edText.text.toString() != "0") {
+                    dataModelInner.result_value_meat.value = howManyMeat(
                         position,
                         edText.text.toString().toInt(),
                         radioGroup1.checkedRadioButtonId,
                         radioGroup2.checkedRadioButtonId,
                     )
                     onClickBtnTestBottomSheet()
-                } else { edLayout.error = "Количество?" }
+                } else {
+                    edLayout.error = "Количество?"
+                }
 
             }
 
@@ -96,12 +98,7 @@ class TopAdapter(dataModel: DataModelView) :
     }
 
     fun onClickBtnTestBottomSheet() {
-        val i = dataModelInner.stateBottomSheetBehavior.value
-        if (i == BottomSheetBehavior.STATE_EXPANDED) {
-            dataModelInner.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_COLLAPSED
-        } else {
             dataModelInner.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_EXPANDED
-        }
     }
 
     fun updateAdapter(listResourseRC: ArrayList<ShablonDataList>) {
@@ -111,17 +108,51 @@ class TopAdapter(dataModel: DataModelView) :
         notifyDataSetChanged()
     }
 
-    fun howManyMeat(position: Int, peopleCount: Int, toggleTitle1 : Int, toggleTitle2: Int) : String {
-        val coefMinus = when(toggleTitle1){
+    fun howManyMeat(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): String {
+        var coefType = 1f
+        var coefTime = 1f
+        var countProd = 0f
+        if (pos == 0) {
+            coefType = when (toggleTitle1) {
+                listIdColumnRadio1[0] -> 1.3f   //любое
+                listIdColumnRadio1[1] -> 1.3f   // кура
+                listIdColumnRadio1[2] -> 1.35f    //свин
+                listIdColumnRadio1[3] -> 1.4f   //говядин
+                //listIdColumnRadio1[4] -> {1.2f} // рыба
+                else -> 1.3f
+            }
 
-
-
-
-            else -> { 1 }
+            coefTime = when (toggleTitle2) {
+                listIdColumnRadio2[0] -> 1.5f    //low
+                listIdColumnRadio2[1] -> 2.5f   // medium
+                listIdColumnRadio2[2] -> 3.5f   //max
+                listIdColumnRadio2[3] ->  4.5f //over
+                else ->                    1.0f
+            }
+            countProd = 0.3f*peopleCount*coefType*coefTime
         }
-        val valueMeat =
 
-        return ""
+        //todo коефициенты?
+        if (pos == 1) {
+            coefType = when (toggleTitle1) {
+                listIdColumnRadio1[0] -> 1f   //любое
+                listIdColumnRadio1[1] -> 1.5f   // пиво
+                listIdColumnRadio1[2] -> 0.5f    //вино
+                listIdColumnRadio1[3] -> 0.3f   //крепкое
+                else -> 1.0f
+            }
+
+            coefTime = when (toggleTitle2) {
+                listIdColumnRadio2[0] -> 1f    //low
+                listIdColumnRadio2[1] -> 1.5f   // medium
+                listIdColumnRadio2[2] -> 2f   //max
+                listIdColumnRadio2[3] -> 3f //over
+                else -> 1.0f
+            }
+            countProd = 1*coefType*coefTime*peopleCount
+        }
+
+        return "$countProd"
     }
 
 }
