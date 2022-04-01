@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             if (supportFragmentManager.findFragmentById(R.id.bottom_sheet_frame) == null) {
                 Log.d(TAG, "Fragment replased")
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.bottom_sheet_frame, ru.calcs.meatcalculator.BottomSheetFragment())
+                    .replace(R.id.bottom_sheet_frame, BottomSheetFragment())
                     .commit()
             }
         }

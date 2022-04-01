@@ -5,15 +5,86 @@
     android:layout_height="match_parent"
     tools:context=".BottomSheetFragment">
 
-    <TextView
-        android:id="@+id/tv_test_frBSH"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_exit_to_app_black_24dp"/>
+        android:padding="30dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/RESULT_DESC_ITOGO"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/container_main_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                style="@style/textResultValues"
+                android:id="@+id/tvResult_value_LITR_KG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:layout_marginEnd="10dp"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/meatall" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_bread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                style="@style/textResultValues"
+                android:id="@+id/tvResult_value_bread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:layout_marginEnd="10dp"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/bread1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_vegetable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                style="@style/textResultValues"
+                android:id="@+id/tvResult_value_vegetable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:layout_marginEnd="10dp"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/meatall" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </FrameLayout>

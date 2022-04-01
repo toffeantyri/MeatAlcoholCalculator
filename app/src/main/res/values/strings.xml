@@ -18,11 +18,17 @@
     <string name="pig">\ Свинина</string>
     <string name="muu">\ Говядина</string>
 
+    <string name="kg">Килограмм</string>
+
     <string name="title_column1_alco">Какой Алкоголь?</string>
     <string name="all_alco">\ Любой</string>
     <string name="bear">\ Пиво</string>
     <string name="vine">\ Вино</string>
     <string name="vodka">\ Крепкие</string>
+
+    <string name="litrs">Литров</string>
+
+
 
     <string name="title_column2">Как долго?</string>
     <string name="time_low">Посидим–поедим(2-3 часа)</string>
@@ -37,6 +43,8 @@
     <string name="alco_over">Очнуться только завтра</string>
 
     <string name="people_count">Количество человек</string>
+
+    <string name="RESULT_DESC_ITOGO">Итого на X человек понадобится:</string>
 
 
 

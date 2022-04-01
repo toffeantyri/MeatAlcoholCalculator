@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="textResultValues" parent="AppTheme">
+        <item name="android:textSize">18sp</item>
+        <item name="editTextColor">@color/black</item>
+    </style>
+
 </resources>

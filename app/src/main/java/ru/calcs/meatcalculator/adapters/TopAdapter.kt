@@ -1,14 +1,17 @@
 package ru.calcs.meatcalculator.adapters
 
+import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import ru.calcs.meatcalculator.BottomSheetFragment
 import ru.calcs.meatcalculator.R
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
@@ -66,7 +69,7 @@ class TopAdapter(dataModel: DataModelView) :
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
-                    dataModelInner.result_value_meat.value = howManyMeat(
+                    dataModelInner.result_value_meat.value = howManyMeatorAlco(
                         position,
                         edText.text.toString().toInt(),
                         radioGroup1.checkedRadioButtonId,
@@ -108,10 +111,10 @@ class TopAdapter(dataModel: DataModelView) :
         notifyDataSetChanged()
     }
 
-    fun howManyMeat(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): String {
+    fun howManyMeatorAlco(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): String {
         var coefType = 1f
         var coefTime = 1f
-        var countProd = 0f
+        var countProd = ""
         if (pos == 0) {
             coefType = when (toggleTitle1) {
                 listIdColumnRadio1[0] -> 1.3f   //любое
@@ -129,10 +132,9 @@ class TopAdapter(dataModel: DataModelView) :
                 listIdColumnRadio2[3] ->  4.5f //over
                 else ->                    1.0f
             }
-            countProd = 0.3f*peopleCount*coefType*coefTime
+            countProd = String.format("%.2f",0.3f*peopleCount*coefType*coefTime) + " Килограмм"
         }
 
-        //todo коефициенты?
         if (pos == 1) {
             coefType = when (toggleTitle1) {
                 listIdColumnRadio1[0] -> 1f   //любое
@@ -149,10 +151,10 @@ class TopAdapter(dataModel: DataModelView) :
                 listIdColumnRadio2[3] -> 3f //over
                 else -> 1.0f
             }
-            countProd = 1*coefType*coefTime*peopleCount
-        }
 
-        return "$countProd"
+            countProd = String.format("%.2f",(1*coefType*coefTime*peopleCount)) + " Литров"
+        }
+        return countProd
     }
 
 }

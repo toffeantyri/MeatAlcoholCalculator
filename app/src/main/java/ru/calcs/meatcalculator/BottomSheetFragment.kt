@@ -17,7 +17,6 @@ import ru.calcs.meatcalculator.viewmodel.DataModelView
 class BottomSheetFragment : Fragment() {
 
     companion object {
-        fun newInstance() {}
     }
     val dataModel: DataModelView by activityViewModels()
 
@@ -28,8 +27,9 @@ class BottomSheetFragment : Fragment() {
         val view0 = inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
 
 
+
         dataModel.result_value_meat.observe(this as LifecycleOwner, {
-            view0.tv_test_frBSH.text = it + "КГ или ЛИТРОВ"
+            view0.tvResult_value_LITR_KG.text = it
         })
 
 
