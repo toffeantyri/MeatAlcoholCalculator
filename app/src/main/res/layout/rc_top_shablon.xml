@@ -38,6 +38,7 @@
                 android:minWidth="200dp">
 
                 <RadioGroup
+                    android:id="@+id/radio_gr_1"
                     android:layout_weight="1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -52,6 +53,7 @@
                         android:text="@string/title_column1" />
 
                     <RadioButton
+                        android:checked="true"
                         android:id="@+id/l_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
                 </RadioGroup>
 
                 <RadioGroup
+                    android:id="@+id/radio_gr_2"
                     android:layout_weight="1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -95,6 +98,7 @@
                         android:text="@string/title_column2" />
 
                     <RadioButton
+                        android:checked="true"
                         android:id="@+id/r_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -136,11 +140,12 @@
                 android:hint="@string/people_count"
                 android:inputType="number"
                 android:textSize="16sp"
-
+                android:imeOptions="actionDone"
                 />
             </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/btn_get_measure"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

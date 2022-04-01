@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isEmpty
-import androidx.core.view.isNotEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.yandex.mobile.ads.banner.AdSize
@@ -30,22 +29,25 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>
     lateinit var adapterTop: TopAdapter
     val dataModel: DataModelView by viewModels()
-    val listRc : ArrayList<ShablonDataList> = arrayListOf()
+    val listRc: ArrayList<ShablonDataList> = arrayListOf()
     private var job: Job? = null // для корутины на запуске
-    private var job1: Job? = null // для корутины
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initMobileAdsYandex()
-        loadAndShowBanner()
-        bottomSheetBehavior = BottomSheetBehavior.from(main_bottom_sheets)
-        dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
-        dataModel.stateBottomSheetBehavior.observe(this, { bottomSheetBehavior.state = it })
         initTopRV()
+        initMobileAdsYandex()
+        setUpBanner()
+        bottomSheetBehavior = BottomSheetBehavior.from(main_bottom_sheets)
 
 
         Log.d(TAG, "onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
+        dataModel.stateBottomSheetBehavior.observe(this, { bottomSheetBehavior.state = it })
     }
 
     override fun onPause() {
@@ -56,13 +58,13 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         Log.d(TAG, "OnResume")
         super.onResume()
+        loadAndShowBanner()
         job = CoroutineScope(Dispatchers.IO).launch {
             Log.d(TAG, job.toString())
 
-            if(adapterTop.list.isEmpty()){
-                Log.d(TAG, "builder + updater adapter : ${adapterTop.list.size}")
-            listRc.builderListOfShablonClass()
-            adapterTop.updateAdapter(listRc)
+            if (adapterTop.list.isEmpty()) {
+                listRc.builderListOfShablonClass()
+                adapterTop.updateAdapter(listRc)
             }
 
             if (supportFragmentManager.findFragmentById(R.id.bottom_sheet_frame) == null) {
@@ -79,12 +81,14 @@ class MainActivity : AppCompatActivity() {
         MobileAds.initialize(this) { Log.d("MyLog", "SDK Initialised OK") }
     }
 
-    fun loadAndShowBanner() {
-        adViewYandex.isActivated
+    fun setUpBanner(){
         adViewYandex.apply {
             setAdSize(AdSize.BANNER_320x50)
             setAdUnitId(getString(R.string.yandex_banner_id_test))
         }
+    }
+
+    fun loadAndShowBanner() {
         val adRequest = AdRequest.Builder().build()
         adViewYandex.setBannerAdEventListener(object : BannerAdEventListener {
             override fun onAdLoaded() {
@@ -92,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onAdFailedToLoad(p0: AdRequestError) {
-                Log.d("MyLog", "Banner Ad Load Fail : ${p0.toString()}")
+                Log.d("MyLog", "Banner Ad Loading Failed : ${p0.toString()}")
             }
 
             override fun onAdClicked() {
@@ -112,43 +116,44 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initTopRV() {
-        if(this::adapterTop.isLateinit){
-        adapterTop = TopAdapter(dataModel)}
-        if (rcView_TopSelector.isEmpty())
-        {Log.d(TAG, "init rc")
+        if (this::adapterTop.isLateinit) {
+            adapterTop = TopAdapter(dataModel)
+        }
+        if (rcView_TopSelector.isEmpty()) {
+            Log.d(TAG, "init rc")
             rcView_TopSelector.apply {
                 layoutManager =
                     LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
                 adapter = adapterTop
                 setHasFixedSize(true)
             }
-    }
+        }
     }
 
-    fun ArrayList<ShablonDataList>.builderListOfShablonClass(){
+    fun ArrayList<ShablonDataList>.builderListOfShablonClass() {
         val l1 = ShablonDataList("0")
         val l2 = ShablonDataList("1")
 
         l1.apply {
-        mainTitle = getString(R.string.title_item_rctop)
-        column1Title = getString(R.string.title_column1)
-        column2Title = getString(R.string.title_column2)
+            mainTitle = getString(R.string.title_item_rctop)
+            column1Title = getString(R.string.title_column1)
+            column2Title = getString(R.string.title_column2)
 
-        c1radio1 = getString(R.string.all_meat)
-        c1radio2 = getString(R.string.chicken)
-        c1radio3 = getString(R.string.pig)
-        c1radio4 = getString(R.string.muu)
+            c1radio1 = getString(R.string.all_meat)
+            c1radio2 = getString(R.string.chicken)
+            c1radio3 = getString(R.string.pig)
+            c1radio4 = getString(R.string.muu)
 
-        c1radio1Image = R.drawable.meatall
-        c1radio2Image = R.drawable.chicken1
-        c1radio3Image = R.drawable.pig1
-        c1radio4Image = R.drawable.muu1
+            c1radio1Image = R.drawable.meatall
+            c1radio2Image = R.drawable.chicken1
+            c1radio3Image = R.drawable.pig1
+            c1radio4Image = R.drawable.muu1
 
-        c2radio1 = getString(R.string.time_low)
-        c2radio2 = getString(R.string.time_med)
-        c2radio3 = getString(R.string.time_max)
-        c2radio4 = getString(R.string.time_over)
-    }
+            c2radio1 = getString(R.string.time_low)
+            c2radio2 = getString(R.string.time_med)
+            c2radio3 = getString(R.string.time_max)
+            c2radio4 = getString(R.string.time_over)
+        }
         l2.apply {
             mainTitle = getString(R.string.title_item_rctop_alco)
             column1Title = getString(R.string.title_column1_alco)
@@ -173,7 +178,6 @@ class MainActivity : AppCompatActivity() {
         this.add(l1)
         this.add(l2)
     }
-
 
 
 }
