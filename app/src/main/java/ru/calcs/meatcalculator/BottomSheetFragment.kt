@@ -46,9 +46,59 @@ class BottomSheetFragment : Fragment() {
             else view0.container_main_meat_result.visibility = View.GONE
         }
 
+        dataModel.result_value_chicken.observe(this as LifecycleOwner) {
+            view0.tvResult_value_chiken_kg.text = it
+            if(it != null) view0.container_chicken_result.visibility = View.VISIBLE
+            else view0.container_chicken_result.visibility = View.GONE
+        }
 
+        dataModel.result_value_pig.observe(this as LifecycleOwner) {
+            view0.tvResult_value_pig_kg.text = it
+            if(it != null) view0.container_pig_result.visibility = View.VISIBLE
+            else view0.container_pig_result.visibility = View.GONE
+        }
 
+        dataModel.result_value_muu.observe(this as LifecycleOwner) {
+            view0.tvResult_value_muu_kg.text = it
+            if(it != null) view0.container_muu_result.visibility = View.VISIBLE
+            else view0.container_muu_result.visibility = View.GONE
+        }
 
+        dataModel.result_value_alco.observe(this as LifecycleOwner) {
+            view0.tvResult_value_LITR.text = it
+            if(it != null) view0.container_main_alco_result.visibility = View.VISIBLE
+            else view0.container_main_alco_result.visibility = View.GONE
+        }
+
+        dataModel.result_value_bear.observe(this as LifecycleOwner) {
+            view0.tvResult_value_bear_litr.text = it
+            if(it != null) view0.container_bear_result.visibility = View.VISIBLE
+            else view0.container_bear_result.visibility = View.GONE
+        }
+
+        dataModel.result_value_vine.observe(this as LifecycleOwner) {
+            view0.tvResult_value_vine_litr.text = it
+            if(it != null) view0.container_vine_result.visibility = View.VISIBLE
+            else view0.container_vine_result.visibility = View.GONE
+        }
+
+        dataModel.result_value_vodka.observe(this as LifecycleOwner) {
+            view0.tvResult_value_vodka_litr.text = it
+            if(it != null) view0.container_vodka_result.visibility = View.VISIBLE
+            else view0.container_vodka_result.visibility = View.GONE
+        }
+
+        dataModel.result_value_veget.observe(this as LifecycleOwner) {
+            view0.tvResult_value_vegetable.text = it
+            if(it != null) view0.container_vegetable.visibility = View.VISIBLE
+            else view0.container_vegetable.visibility = View.GONE
+        }
+
+        dataModel.result_value_bread.observe(this as LifecycleOwner) {
+            view0.tvResult_value_bread.text = it
+            if(it != null) view0.container_bread.visibility = View.VISIBLE
+            else view0.container_bread.visibility = View.GONE
+        }
 
         return view0
     }

@@ -66,34 +66,27 @@ class TopAdapter(dataModel: DataModelView) :
 
         fun bindTap(position: Int) {
             btn.setOnClickListener {
+                clearCurrentResultFromPosition(position)
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
 
                 dataModelInner.positionRC.value = position
-                dataModelInner.main_titleResult_x_people.value = edText.text.toString()
 
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
-                    //общее количество
-                    when(position){
-                        0 -> {dataModelInner.result_value_meat.value = howManyMeatorAlcoAll(
-                            position,
-                            edText.text.toString().toInt(),
-                            radioGroup1.checkedRadioButtonId,
-                            radioGroup2.checkedRadioButtonId,
-                        )}
-                        1 -> {
-                            dataModelInner.result_value_alco.value = howManyMeatorAlcoAll(
-                                position,
-                                edText.text.toString().toInt(),
-                                radioGroup1.checkedRadioButtonId,
-                                radioGroup2.checkedRadioButtonId,
-                            )
-                        }
-                    }
-
+                    dataModelInner.main_titleResult_x_people.value = edText.text.toString()
                     // каждый пункт отдельно для каждой позиции
                     if(position == 0 ) {
                         when (radioGroup1.checkedRadioButtonId) {
+                            //общее мяса
+                            c1_r1.id -> {
+                                dataModelInner.result_value_meat.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                            //куры
                             c1_r2.id -> {
                                 dataModelInner.result_value_chicken.value = howManyMeatorAlcoAll(
                                     position,
@@ -102,6 +95,7 @@ class TopAdapter(dataModel: DataModelView) :
                                     radioGroup2.checkedRadioButtonId,
                                 )
                             }
+                            //свинины
                             c1_r3.id -> {
                                 dataModelInner.result_value_pig.value = howManyMeatorAlcoAll(
                                     position,
@@ -110,6 +104,7 @@ class TopAdapter(dataModel: DataModelView) :
                                     radioGroup2.checkedRadioButtonId,
                                 )
                             }
+                            //говяд
                             c1_r4.id -> {
                                 dataModelInner.result_value_muu.value = howManyMeatorAlcoAll(
                                     position,
@@ -121,6 +116,16 @@ class TopAdapter(dataModel: DataModelView) :
                         }
                     } else if (position == 1){
                         when (radioGroup1.checkedRadioButtonId) {
+                            //общее алко
+                            c1_r1.id -> {
+                                dataModelInner.result_value_alco.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                            //пива
                             c1_r2.id -> {
                                 dataModelInner.result_value_bear.value = howManyMeatorAlcoAll(
                                     position,
@@ -129,6 +134,7 @@ class TopAdapter(dataModel: DataModelView) :
                                     radioGroup2.checkedRadioButtonId,
                                 )
                             }
+                            //вина
                             c1_r3.id -> {
                                 dataModelInner.result_value_vine.value = howManyMeatorAlcoAll(
                                     position,
@@ -137,6 +143,7 @@ class TopAdapter(dataModel: DataModelView) :
                                     radioGroup2.checkedRadioButtonId,
                                 )
                             }
+                            //крепокго
                             c1_r4.id -> {
                                 dataModelInner.result_value_vodka.value = howManyMeatorAlcoAll(
                                     position,
@@ -147,6 +154,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                         }
                     }
+
 
 
 
@@ -232,6 +240,20 @@ class TopAdapter(dataModel: DataModelView) :
             countProd = String.format("%.2f",(1*coefType*coefTime*peopleCount)) + " Литров"
         }
         return countProd
+    }
+
+    fun clearCurrentResultFromPosition(pos : Int){
+        if(pos == 0) {
+            dataModelInner.result_value_meat.value = null
+            dataModelInner.result_value_chicken.value = null
+            dataModelInner.result_value_pig.value = null
+            dataModelInner.result_value_muu.value = null
+        } else if(pos == 1){
+            dataModelInner.result_value_alco.value = null
+            dataModelInner.result_value_bear.value = null
+            dataModelInner.result_value_vine.value = null
+            dataModelInner.result_value_veget.value = null
+        }
     }
 
 }
