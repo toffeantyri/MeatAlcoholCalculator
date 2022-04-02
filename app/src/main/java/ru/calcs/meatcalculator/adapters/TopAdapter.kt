@@ -68,15 +68,90 @@ class TopAdapter(dataModel: DataModelView) :
             btn.setOnClickListener {
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
+
+                dataModelInner.positionRC.value = position
+                dataModelInner.main_titleResult_x_people.value = edText.text.toString()
+
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
-                    dataModelInner.result_value_meat.value = howManyMeatorAlco(
-                        position,
-                        edText.text.toString().toInt(),
-                        radioGroup1.checkedRadioButtonId,
-                        radioGroup2.checkedRadioButtonId,
-                    )
-                    dataModelInner.main_titleResult_x_people.value = edText.text.toString()
-                    //dataModelInner.result_title_value_image.value = radioGroup1.checkedRadioButtonId
+                    //общее количество
+                    when(position){
+                        0 -> {dataModelInner.result_value_meat.value = howManyMeatorAlcoAll(
+                            position,
+                            edText.text.toString().toInt(),
+                            radioGroup1.checkedRadioButtonId,
+                            radioGroup2.checkedRadioButtonId,
+                        )}
+                        1 -> {
+                            dataModelInner.result_value_alco.value = howManyMeatorAlcoAll(
+                                position,
+                                edText.text.toString().toInt(),
+                                radioGroup1.checkedRadioButtonId,
+                                radioGroup2.checkedRadioButtonId,
+                            )
+                        }
+                    }
+
+                    // каждый пункт отдельно для каждой позиции
+                    if(position == 0 ) {
+                        when (radioGroup1.checkedRadioButtonId) {
+                            c1_r2.id -> {
+                                dataModelInner.result_value_chicken.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                            c1_r3.id -> {
+                                dataModelInner.result_value_pig.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                            c1_r4.id -> {
+                                dataModelInner.result_value_muu.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                        }
+                    } else if (position == 1){
+                        when (radioGroup1.checkedRadioButtonId) {
+                            c1_r2.id -> {
+                                dataModelInner.result_value_bear.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                            c1_r3.id -> {
+                                dataModelInner.result_value_vine.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                            c1_r4.id -> {
+                                dataModelInner.result_value_vodka.value = howManyMeatorAlcoAll(
+                                    position,
+                                    edText.text.toString().toInt(),
+                                    radioGroup1.checkedRadioButtonId,
+                                    radioGroup2.checkedRadioButtonId,
+                                )
+                            }
+                        }
+                    }
+
+
+
+
+
                     onClickBtnTestBottomSheet()
                 } else {
                     edLayout.error = "Введите количество человек"
@@ -113,7 +188,7 @@ class TopAdapter(dataModel: DataModelView) :
         notifyDataSetChanged()
     }
 
-    fun howManyMeatorAlco(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): String {
+    fun howManyMeatorAlcoAll(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): String {
         var coefType = 1f
         var coefTime = 1f
         var countProd = ""
