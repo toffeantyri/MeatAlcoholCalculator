@@ -9,6 +9,8 @@ import android.widget.*
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.radiobutton.MaterialRadioButton
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import ru.calcs.meatcalculator.BottomSheetFragment
@@ -35,18 +37,18 @@ class TopAdapter(dataModel: DataModelView) :
         val btn = itemView.findViewById<Button>(R.id.btn_get_measure)
         val column1_title = itemView.findViewById<TextView>(R.id.left_radio_title)
         val radioGroup1 = itemView.findViewById<RadioGroup>(R.id.radio_gr_1)
-        val c1_r1 = itemView.findViewById<RadioButton>(R.id.l_radio_1)
-        val c1_r2 = itemView.findViewById<RadioButton>(R.id.l_radio_2)
-        val c1_r3 = itemView.findViewById<RadioButton>(R.id.l_radio_3)
-        val c1_r4 = itemView.findViewById<RadioButton>(R.id.l_radio_4)
+        val c1_r1 = itemView.findViewById<MaterialRadioButton>(R.id.l_radio_1)
+        val c1_r2 = itemView.findViewById<MaterialRadioButton>(R.id.l_radio_2)
+        val c1_r3 = itemView.findViewById<MaterialRadioButton>(R.id.l_radio_3)
+        val c1_r4 = itemView.findViewById<MaterialRadioButton>(R.id.l_radio_4)
         val column2_title = itemView.findViewById<TextView>(R.id.right_radio_title)
         val radioGroup2 = itemView.findViewById<RadioGroup>(R.id.radio_gr_2)
-        val c2_r1 = itemView.findViewById<RadioButton>(R.id.r_radio_1)
-        val c2_r2 = itemView.findViewById<RadioButton>(R.id.r_radio_2)
-        val c2_r3 = itemView.findViewById<RadioButton>(R.id.r_radio_3)
-        val c2_r4 = itemView.findViewById<RadioButton>(R.id.r_radio_4)
-        val switch_bread = itemView.findViewById<Switch>(R.id.switch_bread)
-        val switch_veget = itemView.findViewById<Switch>(R.id.switch_veget)
+        val c2_r1 = itemView.findViewById<MaterialRadioButton>(R.id.r_radio_1)
+        val c2_r2 = itemView.findViewById<MaterialRadioButton>(R.id.r_radio_2)
+        val c2_r3 = itemView.findViewById<MaterialRadioButton>(R.id.r_radio_3)
+        val c2_r4 = itemView.findViewById<MaterialRadioButton>(R.id.r_radio_4)
+        val switch_bread = itemView.findViewById<SwitchMaterial>(R.id.switch_bread)
+        val switch_veget = itemView.findViewById<SwitchMaterial>(R.id.switch_veget)
 
 
         fun bindView(position: Int) {
@@ -220,10 +222,10 @@ class TopAdapter(dataModel: DataModelView) :
         var countProd = 0f
         if (pos == 0) {
                 coefTime = when (toggleTitle2) {
-                listIdColumnRadio2[0] -> 1.5f    //low
-                listIdColumnRadio2[1] -> 2.5f   // medium
-                listIdColumnRadio2[2] -> 3.5f   //max
-                listIdColumnRadio2[3] ->  4.5f //over
+                listIdColumnRadio2[0] -> 1.1f //low
+                listIdColumnRadio2[1] -> 1.8f    // medium
+                listIdColumnRadio2[2] -> 2.5f    //max
+                listIdColumnRadio2[3] -> 4f    //over
                 else ->                    1.0f
             }
             countProd = (0.3f*peopleCount*coefTime)
@@ -231,10 +233,10 @@ class TopAdapter(dataModel: DataModelView) :
 
         if (pos == 1) {
                 coefTime = when (toggleTitle2) {
-                listIdColumnRadio2[0] -> 1f    //low
-                listIdColumnRadio2[1] -> 1.5f   // medium
-                listIdColumnRadio2[2] -> 2f   //max
-                listIdColumnRadio2[3] -> 3f //over
+                listIdColumnRadio2[0] -> 1.0f    //low
+                listIdColumnRadio2[1] -> 2f   // medium
+                listIdColumnRadio2[2] -> 2.75f   //max
+                listIdColumnRadio2[3] -> 4.5f //over
                 else -> 1.0f
             }
 

@@ -6,7 +6,10 @@
     <color name="grey_blue">#415A94</color>
     <color name="light_orange">#C93F00</color>
     <color name="light2_orange">#66FF6500</color>
+    <color name="light3_orange">#FFB381</color>
     <color name="black">#000000</color>
     <color name="grey">#7E000000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="light_grey">#E9E9E9</color>
 </resources>

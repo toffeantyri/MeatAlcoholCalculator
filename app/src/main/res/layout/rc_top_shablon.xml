@@ -7,45 +7,47 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        app:cardBackgroundColor="@color/light_grey"
         app:cardCornerRadius="10dp"
-        app:cardElevation="20dp">
+        app:cardElevation="20dp"
+        app:cardUseCompatPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/main_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="@string/title_item_rctop"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="3dp"
+                android:minWidth="200dp"
                 android:orientation="horizontal"
                 android:paddingStart="10dp"
-                android:weightSum="2"
-                android:minWidth="200dp"
-                android:layout_marginBottom="20dp">
+                android:weightSum="2">
 
                 <RadioGroup
                     android:id="@+id/radio_gr_1"
-                    android:layout_weight="1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="5dp">
+                    android:layout_weight="1"
+                    >
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/left_radio_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,29 +55,33 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_column1" />
 
-                    <RadioButton
-                        android:checked="true"
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/l_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:drawableStart="@drawable/ic_meatall"
                         android:text="@string/all_meat" />
 
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/l_radio_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_chicken"
                         android:text="@string/chicken" />
 
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/l_radio_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_pig"
                         android:text="@string/pig" />
 
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/l_radio_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -85,12 +91,13 @@
 
                 <RadioGroup
                     android:id="@+id/radio_gr_2"
-                    android:layout_weight="1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="5dp">
+                    android:layout_weight="1"
+                    >
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/radioButtonStyle"
                         android:id="@+id/right_radio_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,26 +105,30 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_column2" />
 
-                    <RadioButton
-                        android:checked="true"
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/r_radio_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="@string/time_low" />
 
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/r_radio_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/time_med" />
 
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/r_radio_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/time_max" />
 
-                    <RadioButton
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        style="@style/radioButtonStyle"
                         android:id="@+id/r_radio_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -131,33 +142,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:layout_weight="1"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:textColor="@color/black"
                     android:id="@+id/switch_bread"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_gravity="end"
-                    android:drawablePadding="2dp"
-                    android:drawableStart="@drawable/ic_bread"
-                    android:checked="false"
-                    android:switchPadding="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bread"
-                    android:layout_marginBottom="5dp"/>
-
-                <Switch
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:id="@+id/switch_veget"
-                    android:layout_marginEnd="10dp"
-                    android:layout_gravity="end"
-                    android:drawablePadding="2dp"
-                    android:drawableStart="@drawable/ic_vegetable"
                     android:checked="false"
-                    android:switchPadding="2dp"
+                    android:drawableStart="@drawable/ic_bread"
+                    android:text="@string/bread" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:textColor="@color/black"
+                    android:id="@+id/switch_veget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/vegetable"/>
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:drawableStart="@drawable/ic_vegetable"
+                    android:text="@string/vegetable" />
             </LinearLayout>
 
 
@@ -165,21 +174,22 @@
                 android:id="@+id/ed_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/people_count"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="5dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_ppl_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/people_count"
-                android:inputType="number"
-                android:textSize="16sp"
-                android:imeOptions="actionDone"
-                />
+                android:layout_marginVertical="5dp"
+                android:gravity="center"
+                android:hint="@string/people_count">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_ppl_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-            <Button
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_get_measure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,6 +199,6 @@
         </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

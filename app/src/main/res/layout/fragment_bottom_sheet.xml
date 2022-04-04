@@ -3,70 +3,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomSheetFragment">
+    tools:context=".BottomSheetFragment"
+    tools:background="@color/white">
 
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:background="@drawable/button_bg"
+                android:drawableEnd="@drawable/ic_save_black_24dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:background="@drawable/button_bg"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_share"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableEnd="@drawable/ic_share_black_24dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/grey_blue"
+            android:alpha="0.5"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="5dp">
 
                 <TextView
+                    android:textSize="12sp"
                     android:id="@+id/main_title_x_people_meat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="Итого на Х человек понадобится мяса:"
-                    android:layout_marginBottom="10dp"/>
+                    android:text="Итого на Х человек понадобится мяса:" />
 
-
-                <LinearLayout
-                    android:id="@+id/container_main_meat_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_meatall" />
-                    <TextView
-                        android:id="@+id/tvResult_value_KG"
-                        style="@style/textResultValues"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="TextView" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/container_chicken_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_chicken" />
+
                     <TextView
                         android:id="@+id/tvResult_value_chiken_kg"
                         style="@style/textResultValues"
@@ -80,13 +103,16 @@
                     android:id="@+id/container_pig_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_pig" />
+
                     <TextView
                         android:id="@+id/tvResult_value_pig_kg"
                         style="@style/textResultValues"
@@ -100,13 +126,16 @@
                     android:id="@+id/container_muu_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_muu" />
+
                     <TextView
                         android:id="@+id/tvResult_value_muu_kg"
                         style="@style/textResultValues"
@@ -121,13 +150,16 @@
                     android:id="@+id/container_bread"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_bread" />
+
                     <TextView
                         android:id="@+id/tvResult_value_bread"
                         style="@style/textResultValues"
@@ -141,13 +173,16 @@
                     android:id="@+id/container_vegetable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_vegetable" />
+
                     <TextView
                         android:id="@+id/tvResult_value_vegetable"
                         style="@style/textResultValues"
@@ -161,57 +196,36 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dp">
-
+                android:padding="5dp">
 
                 <TextView
+                    android:textSize="12sp"
                     android:id="@+id/main_title_x_people_alco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="Итого на Х человек понадобится  алкоголя"
-                    android:layout_marginBottom="10dp"/>
-
-
-                <LinearLayout
-                    android:id="@+id/container_main_alco_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_allalco" />
-                    <TextView
-                        android:id="@+id/tvResult_value_LITR"
-                        style="@style/textResultValues"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="TextView" />
-
-
-                </LinearLayout>
+                    android:text="Итого на Х человек понадобится  алкоголя" />
 
                 <LinearLayout
                     android:id="@+id/container_bear_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_bear" />
+
                     <TextView
                         android:id="@+id/tvResult_value_bear_litr"
                         style="@style/textResultValues"
@@ -225,13 +239,16 @@
                     android:id="@+id/container_vine_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_vine" />
+
                     <TextView
                         android:id="@+id/tvResult_value_vine_litr"
                         style="@style/textResultValues"
@@ -245,13 +262,16 @@
                     android:id="@+id/container_vodka_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_cognac" />
+
                     <TextView
                         android:id="@+id/tvResult_value_vodka_litr"
                         style="@style/textResultValues"
@@ -264,6 +284,33 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/grey_blue"
+            android:alpha="0.5"/>
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/tv_desc_meat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/desc_meat"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_desc_alco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/desc_alco"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
