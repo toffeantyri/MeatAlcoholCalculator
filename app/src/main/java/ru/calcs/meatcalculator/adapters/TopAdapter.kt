@@ -79,9 +79,7 @@ class TopAdapter(dataModel: DataModelView) :
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
                 countPeople = edText.text.toString()
                 dataModelInner.positionRC.value = position
-
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
-
                     // каждый пункт отдельно для каждой позиции
                     if(position == 0 ) {
                         dataModelInner.main_titleResult_x_people_meat.value = edText.text.toString()
@@ -246,13 +244,13 @@ class TopAdapter(dataModel: DataModelView) :
     }
 
     fun howManyBread(peopleCount: Int,meatKGvalue: Float): Float {
-        val coefOne = if(meatKGvalue/peopleCount < 0.6f) 0.12f else 0.08f
-        return meatKGvalue/0.3f*coefOne*peopleCount
+        val coefOne = if(meatKGvalue/peopleCount < 0.8f) 0.12f else 0.08f
+        return (meatKGvalue/0.3f)*coefOne
     }
 
     fun howManyVeget(peopleCount: Int,meatKGvalue: Float): Float{
-        val coefOne = if(meatKGvalue/peopleCount < 0.6f) 0.15f else 0.1f
-        return meatKGvalue/0.3f*coefOne*peopleCount
+        val coefOne = if(meatKGvalue/peopleCount < 0.8f) 0.15f else 0.1f
+        return (meatKGvalue/0.3f)*coefOne
     }
 
 
