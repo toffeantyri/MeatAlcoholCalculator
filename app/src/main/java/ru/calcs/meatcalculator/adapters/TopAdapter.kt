@@ -66,18 +66,18 @@ class TopAdapter(dataModel: DataModelView) :
             c2_r3.text = list[position].c2radio3
             c2_r4.text = list[position].c2radio4
             edText.text?.append(countPeople)
-
             switch_bread.visibility = if(position==0){View.VISIBLE} else View.INVISIBLE
             switch_veget.visibility = if(position==0){View.VISIBLE} else View.INVISIBLE
         }
 
+        private var meatValue = 0f
+        private var alcoValue = 0f
         fun bindTap(position: Int) {
             btn.setOnClickListener {
                 clearCurrentResultFromPosition(position)
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
                 countPeople = edText.text.toString()
-
                 dataModelInner.positionRC.value = position
 
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
@@ -88,82 +88,98 @@ class TopAdapter(dataModel: DataModelView) :
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее мяса
                             c1_r1.id -> {
-                                dataModelInner.result_value_meat.value = howManyMeatorAlcoAllNoType(
+                                meatValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_meat.value = meatValue
                             }
                             //куры
                             c1_r2.id -> {
-                                dataModelInner.result_value_chicken.value = howManyMeatorAlcoAllNoType(
+                                meatValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_chicken.value = meatValue
                             }
                             //свинины
                             c1_r3.id -> {
-                                dataModelInner.result_value_pig.value = howManyMeatorAlcoAllNoType(
+                                meatValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_pig.value = meatValue
                             }
                             //говяд
                             c1_r4.id -> {
-                                dataModelInner.result_value_muu.value = howManyMeatorAlcoAllNoType(
+                                meatValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_muu.value = meatValue
                             }
+                        }
+                        if (switch_bread.visibility == View.VISIBLE && switch_bread.isChecked){
+                            dataModelInner.result_value_bread.value = howManyBread(countPeople.toInt(), meatValue)
+                        }
+                        if(switch_veget.visibility == View.VISIBLE && switch_veget.isChecked){
+                            dataModelInner.result_value_veget.value = howManyVeget(countPeople.toInt(), meatValue)
                         }
                     } else if (position == 1){
                         dataModelInner.main_titleResult_x_people_alco.value = edText.text.toString()
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее алко
                             c1_r1.id -> {
-                                dataModelInner.result_value_alco.value = howManyMeatorAlcoAllNoType(
+                                alcoValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_alco.value = alcoValue
                             }
                             //пива
                             c1_r2.id -> {
-                                dataModelInner.result_value_bear.value = howManyMeatorAlcoAllNoType(
+                                alcoValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_bear.value = alcoValue
                             }
                             //вина
                             c1_r3.id -> {
-                                dataModelInner.result_value_vine.value = howManyMeatorAlcoAllNoType(
+                                alcoValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_vine.value = alcoValue
                             }
                             //крепокго
                             c1_r4.id -> {
-                                dataModelInner.result_value_vodka.value = howManyMeatorAlcoAllNoType(
+                                alcoValue = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
+                                dataModelInner.result_value_vodka.value = alcoValue
                             }
                         }
                     }
+
+
 
                     onClickBtnTestBottomSheet()
                 } else {
@@ -229,12 +245,27 @@ class TopAdapter(dataModel: DataModelView) :
         return countProd
     }
 
+    fun howManyBread(peopleCount: Int,meatKGvalue: Float): Float {
+        val coefOne = if(meatKGvalue/peopleCount < 0.6f) 0.12f else 0.08f
+        return meatKGvalue/0.3f*coefOne*peopleCount
+    }
+
+    fun howManyVeget(peopleCount: Int,meatKGvalue: Float): Float{
+        val coefOne = if(meatKGvalue/peopleCount < 0.6f) 0.15f else 0.1f
+        return meatKGvalue/0.3f*coefOne*peopleCount
+    }
+
+
+
+
     fun clearCurrentResultFromPosition(pos : Int){
         if(pos == 0) {
             dataModelInner.result_value_meat.value = null
             dataModelInner.result_value_chicken.value = null
             dataModelInner.result_value_pig.value = null
             dataModelInner.result_value_muu.value = null
+            dataModelInner.result_value_bread.value = null
+            dataModelInner.result_value_veget.value = null
         } else if(pos == 1){
             dataModelInner.result_value_alco.value = null
             dataModelInner.result_value_bear.value = null

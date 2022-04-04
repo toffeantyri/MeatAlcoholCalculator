@@ -167,14 +167,14 @@ class BottomSheetFragment : Fragment() {
 
         dataModel.result_value_bread.observe(this as LifecycleOwner) {
             if (it != null) {
-                view0.tvResult_value_bread.text = (String.format("%.2f", it) + getString(R.string.kg))
+                view0.tvResult_value_bread.text = (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.breads))
                 view0.container_bread.visibility = View.VISIBLE
             } else view0.container_bread.visibility = View.GONE
         }
 
         dataModel.result_value_veget.observe(this as LifecycleOwner) {
             if (it != null) {
-                view0.tvResult_value_vegetable.text = (String.format("%.2f", it) + getString(R.string.kg))
+                view0.tvResult_value_vegetable.text = (String.format("%.2f", it) + getString(R.string.kg)+ getString(R.string.vegetables))
                 view0.container_vegetable.visibility = View.VISIBLE
             } else view0.container_vegetable.visibility = View.GONE
         }
