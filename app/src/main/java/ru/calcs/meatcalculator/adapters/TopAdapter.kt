@@ -166,7 +166,7 @@ class TopAdapter(dataModel: DataModelView) :
                                 )
                                 dataModelInner.result_value_vine.value = alcoValue
                             }
-                            //крепокго
+                            //крепкого
                             c1_r4.id -> {
                                 alcoValue = howManyMeatorAlcoAllNoType(
                                     position,
@@ -178,8 +178,6 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                         }
                     }
-
-
 
                     onClickBtnTestBottomSheet()
                 } else {
@@ -226,7 +224,7 @@ class TopAdapter(dataModel: DataModelView) :
                 listIdColumnRadio2[1] -> 1.8f    // medium
                 listIdColumnRadio2[2] -> 2.5f    //max
                 listIdColumnRadio2[3] -> 4f    //over
-                else ->                    1.0f
+                else -> 1.0f
             }
             countProd = (0.3f*peopleCount*coefTime)
         }
@@ -242,6 +240,7 @@ class TopAdapter(dataModel: DataModelView) :
 
             countProd = (1*coefTime*peopleCount)
         }
+        Log.d(TAG, "Количество по позиции $pos :  $countProd ")
         return countProd
     }
 
