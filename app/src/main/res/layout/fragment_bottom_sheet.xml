@@ -6,33 +6,10 @@
     tools:context=".BottomSheetFragment">
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/main_title_x_people_meat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:text="@string/RESULT_DESC_ITOGO1" />
-
-            <TextView
-                android:id="@+id/main_title_x_people_alco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/RESULT_DESC_ITOGO1" />
-
-        </LinearLayout>
 
 
         <LinearLayout
@@ -48,14 +25,28 @@
                 android:padding="10dp"
                 >
 
+                <TextView
+                    android:id="@+id/main_title_x_people_meat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Итого на Х человек понадобится мяса:"
+                    android:layout_marginBottom="10dp"/>
+
+
                 <LinearLayout
                     android:id="@+id/container_main_meat_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
-
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_meatall" />
                     <TextView
                         android:id="@+id/tvResult_value_KG"
                         style="@style/textResultValues"
@@ -63,11 +54,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_meatall" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -77,7 +63,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_chicken" />
                     <TextView
                         android:id="@+id/tvResult_value_chiken_kg"
                         style="@style/textResultValues"
@@ -85,11 +74,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_chicken" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,7 +83,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_pig" />
                     <TextView
                         android:id="@+id/tvResult_value_pig_kg"
                         style="@style/textResultValues"
@@ -107,11 +94,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_pig" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -121,7 +103,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_muu" />
                     <TextView
                         android:id="@+id/tvResult_value_muu_kg"
                         style="@style/textResultValues"
@@ -129,11 +114,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_muu" />
                 </LinearLayout>
 
 
@@ -144,7 +124,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_bread" />
                     <TextView
                         android:id="@+id/tvResult_value_bread"
                         style="@style/textResultValues"
@@ -152,11 +135,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_bread" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +144,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_vegetable" />
                     <TextView
                         android:id="@+id/tvResult_value_vegetable"
                         style="@style/textResultValues"
@@ -174,11 +155,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_vegetable" />
                 </LinearLayout>
 
 
@@ -191,14 +167,29 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
+
+                <TextView
+                    android:id="@+id/main_title_x_people_alco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Итого на Х человек понадобится  алкоголя"
+                    android:layout_marginBottom="10dp"/>
+
+
                 <LinearLayout
                     android:id="@+id/container_main_alco_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
-
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_allalco" />
                     <TextView
                         android:id="@+id/tvResult_value_LITR"
                         style="@style/textResultValues"
@@ -207,10 +198,7 @@
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_allalco" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -220,7 +208,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_bear" />
                     <TextView
                         android:id="@+id/tvResult_value_bear_litr"
                         style="@style/textResultValues"
@@ -228,11 +219,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_bear" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -242,7 +228,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_vine" />
                     <TextView
                         android:id="@+id/tvResult_value_vine_litr"
                         style="@style/textResultValues"
@@ -250,11 +239,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_vine" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -264,7 +248,10 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_cognac" />
                     <TextView
                         android:id="@+id/tvResult_value_vodka_litr"
                         style="@style/textResultValues"
@@ -272,16 +259,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_cognac" />
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
 

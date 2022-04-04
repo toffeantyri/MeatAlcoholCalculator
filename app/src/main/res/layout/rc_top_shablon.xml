@@ -35,7 +35,8 @@
                 android:orientation="horizontal"
                 android:paddingStart="10dp"
                 android:weightSum="2"
-                android:minWidth="200dp">
+                android:minWidth="200dp"
+                android:layout_marginBottom="20dp">
 
                 <RadioGroup
                     android:id="@+id/radio_gr_1"
@@ -125,6 +126,41 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:layout_weight="1"
+                    android:id="@+id/switch_bread"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="end"
+                    android:drawablePadding="2dp"
+                    android:drawableStart="@drawable/ic_bread"
+                    android:checked="false"
+                    android:switchPadding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bread"
+                    android:layout_marginBottom="5dp"/>
+
+                <Switch
+                    android:layout_weight="1"
+                    android:id="@+id/switch_veget"
+                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="end"
+                    android:drawablePadding="2dp"
+                    android:drawableStart="@drawable/ic_vegetable"
+                    android:checked="false"
+                    android:switchPadding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vegetable"/>
+            </LinearLayout>
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ed_layout"
                 android:layout_width="match_parent"
@@ -145,7 +181,6 @@
             </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/btn_get_measure"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

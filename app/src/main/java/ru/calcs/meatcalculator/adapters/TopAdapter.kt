@@ -25,6 +25,7 @@ class TopAdapter(dataModel: DataModelView) :
 
     val listIdColumnRadio1: ArrayList<Int> = arrayListOf()
     val listIdColumnRadio2: ArrayList<Int> = arrayListOf()
+    var countPeople = "1"
 
 
     inner class TopHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -44,6 +45,8 @@ class TopAdapter(dataModel: DataModelView) :
         val c2_r2 = itemView.findViewById<RadioButton>(R.id.r_radio_2)
         val c2_r3 = itemView.findViewById<RadioButton>(R.id.r_radio_3)
         val c2_r4 = itemView.findViewById<RadioButton>(R.id.r_radio_4)
+        val switch_bread = itemView.findViewById<Switch>(R.id.switch_bread)
+        val switch_veget = itemView.findViewById<Switch>(R.id.switch_veget)
 
 
         fun bindView(position: Int) {
@@ -62,6 +65,10 @@ class TopAdapter(dataModel: DataModelView) :
             c2_r2.text = list[position].c2radio2
             c2_r3.text = list[position].c2radio3
             c2_r4.text = list[position].c2radio4
+            edText.text?.append(countPeople)
+
+            switch_bread.visibility = if(position==0){View.VISIBLE} else View.INVISIBLE
+            switch_veget.visibility = if(position==0){View.VISIBLE} else View.INVISIBLE
         }
 
         fun bindTap(position: Int) {
@@ -69,17 +76,19 @@ class TopAdapter(dataModel: DataModelView) :
                 clearCurrentResultFromPosition(position)
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
+                countPeople = edText.text.toString()
 
                 dataModelInner.positionRC.value = position
 
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
-                    dataModelInner.main_titleResult_x_people.value = edText.text.toString()
+
                     // каждый пункт отдельно для каждой позиции
                     if(position == 0 ) {
+                        dataModelInner.main_titleResult_x_people_meat.value = edText.text.toString()
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее мяса
                             c1_r1.id -> {
-                                dataModelInner.result_value_meat.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_meat.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -88,7 +97,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                             //куры
                             c1_r2.id -> {
-                                dataModelInner.result_value_chicken.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_chicken.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -97,7 +106,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                             //свинины
                             c1_r3.id -> {
-                                dataModelInner.result_value_pig.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_pig.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -106,7 +115,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                             //говяд
                             c1_r4.id -> {
-                                dataModelInner.result_value_muu.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_muu.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -115,10 +124,11 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                         }
                     } else if (position == 1){
+                        dataModelInner.main_titleResult_x_people_alco.value = edText.text.toString()
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее алко
                             c1_r1.id -> {
-                                dataModelInner.result_value_alco.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_alco.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -127,7 +137,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                             //пива
                             c1_r2.id -> {
-                                dataModelInner.result_value_bear.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_bear.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -136,7 +146,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                             //вина
                             c1_r3.id -> {
-                                dataModelInner.result_value_vine.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_vine.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -145,7 +155,7 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                             //крепокго
                             c1_r4.id -> {
-                                dataModelInner.result_value_vodka.value = howManyMeatorAlcoAll(
+                                dataModelInner.result_value_vodka.value = howManyMeatorAlcoAllNoType(
                                     position,
                                     edText.text.toString().toInt(),
                                     radioGroup1.checkedRadioButtonId,
@@ -154,11 +164,6 @@ class TopAdapter(dataModel: DataModelView) :
                             }
                         }
                     }
-
-
-
-
-
 
                     onClickBtnTestBottomSheet()
                 } else {
@@ -196,40 +201,22 @@ class TopAdapter(dataModel: DataModelView) :
         notifyDataSetChanged()
     }
 
-    fun howManyMeatorAlcoAll(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): String {
-        var coefType = 1f
+    fun howManyMeatorAlcoAllNoType(pos: Int, peopleCount: Int, toggleTitle1: Int, toggleTitle2: Int): Float {
         var coefTime = 1f
-        var countProd = ""
+        var countProd = 0f
         if (pos == 0) {
-            coefType = when (toggleTitle1) {
-                listIdColumnRadio1[0] -> 1.3f   //любое
-                listIdColumnRadio1[1] -> 1.3f   // кура
-                listIdColumnRadio1[2] -> 1.35f    //свин
-                listIdColumnRadio1[3] -> 1.4f   //говядин
-                //listIdColumnRadio1[4] -> {1.2f} // рыба
-                else -> 1.3f
-            }
-
-            coefTime = when (toggleTitle2) {
+                coefTime = when (toggleTitle2) {
                 listIdColumnRadio2[0] -> 1.5f    //low
                 listIdColumnRadio2[1] -> 2.5f   // medium
                 listIdColumnRadio2[2] -> 3.5f   //max
                 listIdColumnRadio2[3] ->  4.5f //over
                 else ->                    1.0f
             }
-            countProd = String.format("%.2f",0.3f*peopleCount*coefType*coefTime) + " Килограмм"
+            countProd = (0.3f*peopleCount*coefTime)
         }
 
         if (pos == 1) {
-            coefType = when (toggleTitle1) {
-                listIdColumnRadio1[0] -> 1f   //любое
-                listIdColumnRadio1[1] -> 1.5f   // пиво
-                listIdColumnRadio1[2] -> 0.5f    //вино
-                listIdColumnRadio1[3] -> 0.3f   //крепкое
-                else -> 1.0f
-            }
-
-            coefTime = when (toggleTitle2) {
+                coefTime = when (toggleTitle2) {
                 listIdColumnRadio2[0] -> 1f    //low
                 listIdColumnRadio2[1] -> 1.5f   // medium
                 listIdColumnRadio2[2] -> 2f   //max
@@ -237,7 +224,7 @@ class TopAdapter(dataModel: DataModelView) :
                 else -> 1.0f
             }
 
-            countProd = String.format("%.2f",(1*coefType*coefTime*peopleCount)) + " Литров"
+            countProd = (1*coefTime*peopleCount)
         }
         return countProd
     }
@@ -252,7 +239,7 @@ class TopAdapter(dataModel: DataModelView) :
             dataModelInner.result_value_alco.value = null
             dataModelInner.result_value_bear.value = null
             dataModelInner.result_value_vine.value = null
-            dataModelInner.result_value_veget.value = null
+            dataModelInner.result_value_vodka.value = null
         }
     }
 

@@ -18,7 +18,11 @@
     <string name="pig">\ Свинина</string>
     <string name="muu">\ Говядина</string>
 
-    <string name="kg">Килограмм</string>
+    <string name="chickens">\ Курицы</string>
+    <string name="pigs">\ Свинины</string>
+    <string name="muus">\ Говядины</string>
+
+    <string name="kg">\ Килограмм</string>
 
     <string name="title_column1_alco">Какой Алкоголь?</string>
     <string name="all_alco">\ Любой</string>
@@ -26,7 +30,22 @@
     <string name="vine">\ Вино</string>
     <string name="vodka">\ Крепкие</string>
 
-    <string name="litrs">Литров</string>
+    <string name="bears">\ Пива</string>
+    <string name="vines">\ Вина</string>
+    <string name="vodkas">\ Крепкого</string>
+
+    <string name="litrs">\ Литров</string>
+
+
+    <string name="bread">Хлеб</string>
+    <string name="breads">\ Хлеба</string>
+
+    <string name="vegetable">Овощи</string>
+    <string name="vegetables">\ Овощей</string>
+
+    <string name="bottles">\ бутылок</string>
+
+
 
 
 
