@@ -70,6 +70,7 @@
 
 
     <string name="btn_save">Сохранить</string>
+    <string name="btn_load">Загрузить</string>
     <string name="btn_share">Поделиться</string>
 
 

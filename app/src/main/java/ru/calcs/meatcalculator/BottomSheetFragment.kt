@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
+import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.view.*
+import ru.calcs.meatcalculator.adapters.AppPreference
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
 //КОЭФИЦИЕНТ УЖАРКИ
@@ -42,7 +44,7 @@ class BottomSheetFragment : Fragment() {
             val peopleTextCount =
                 if (it.toInt() > 1) getString(R.string.RESULT_DESC_ITOGO_peoples) else getString(R.string.RESULT_DESC_ITOGO_people)
             view0.main_title_x_people_meat.text =
-                (getString(R.string.RESULT_DESC_ITOGO1) + it + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
+                (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
         }
 
         //наблюдатель итого на Х человек алко
@@ -50,11 +52,11 @@ class BottomSheetFragment : Fragment() {
             val peopleTextCount =
                 if (it.toInt() > 1) getString(R.string.RESULT_DESC_ITOGO_peoples) else getString(R.string.RESULT_DESC_ITOGO_people)
             view0.main_title_x_people_alco.text =
-                (getString(R.string.RESULT_DESC_ITOGO1) + it + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
+                (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
         }
 
         dataModel.result_value_meat.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null && it != 0f) {
                 dataModel.result_value_chicken.value = (it / 3) * COEF_CHIKEN
                 dataModel.result_value_pig.value = (it / 3) * COEF_PIG
                 dataModel.result_value_muu.value = (it / 3) * COEF_MUU
@@ -65,7 +67,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_chicken.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_chiken_kg.text =
                     (String.format("%.2f", it * COEF_CHIKEN) + getString(R.string.kg) + getString(R.string.chickens))
                 view0.container_chicken_result.visibility = View.VISIBLE
@@ -77,7 +79,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_pig.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_pig_kg.text =
                     (String.format("%.2f", it * COEF_PIG) + getString(R.string.kg) + getString(R.string.pigs))
                 view0.container_pig_result.visibility = View.VISIBLE
@@ -89,7 +91,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_muu.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_muu_kg.text =
                     (String.format("%.2f", it * COEF_MUU) + getString(R.string.kg) + getString(R.string.muus))
                 view0.container_muu_result.visibility = View.VISIBLE
@@ -101,7 +103,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_alco.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 dataModel.result_value_bear.value = (it * COEF_BEAR) * 0.2f
                 dataModel.result_value_vine.value = (it * COEF_VINE) * 0.25f
                 dataModel.result_value_vodka.value = (it * COEF_VODKA) * 0.55f
@@ -112,7 +114,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_bear.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_bear_litr.text = (String.format(
                     "%.2f",
                     it * COEF_BEAR
@@ -126,7 +128,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_vine.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_vine_litr.text =
                     (String.format("%.2f", it * COEF_VINE) + getString(R.string.litrs) + getString(R.string.vines))
                 view0.container_vine_result.visibility = View.VISIBLE
@@ -138,7 +140,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_vodka.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_vodka_litr.text =
                     (String.format("%.2f", it * COEF_VODKA) + getString(R.string.litrs) + getString(R.string.vodkas))
                 view0.container_vodka_result.visibility = View.VISIBLE
@@ -151,7 +153,7 @@ class BottomSheetFragment : Fragment() {
 
 
         dataModel.result_value_bread.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_bread.text =
                     (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.breads))
                 view0.container_bread.visibility = View.VISIBLE
@@ -159,7 +161,7 @@ class BottomSheetFragment : Fragment() {
         }
 
         dataModel.result_value_veget.observe(this as LifecycleOwner) {
-            if (it != null) {
+            if (it != null&& it != 0f) {
                 view0.tvResult_value_vegetable.text =
                     (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.vegetables))
                 view0.container_vegetable.visibility = View.VISIBLE
@@ -167,9 +169,45 @@ class BottomSheetFragment : Fragment() {
         }
 
 
-
+        view0.btn_save_result.setOnClickListener {
+            val chicken : Float = dataModel.result_value_chicken.value ?: 0f
+            val pig : Float = dataModel.result_value_pig.value ?: 0f
+            val muu : Float = dataModel.result_value_muu.value ?: 0f
+            val bear : Float = dataModel.result_value_bear.value ?: 0f
+            val vine : Float = dataModel.result_value_vine.value ?: 0f
+            val vodka : Float = dataModel.result_value_vodka.value ?: 0f
+            val bread : Float = dataModel.result_value_bread.value ?: 0f
+            val veget : Float = dataModel.result_value_veget.value ?: 0f
+            val xPeopleMeat : Float = dataModel.main_titleResult_x_people_meat.value ?: 0f
+            val xPeopleAlco : Float = dataModel.main_titleResult_x_people_alco.value ?: 0f
+            saveOnClick(chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat,xPeopleAlco)
+        }
+        view0.btn_load_result.setOnClickListener {
+            loadOnClick()
+        }
         return view0
     }
 
+
+    fun saveOnClick(chicken: Float, pig: Float, muu: Float, bear: Float, vine: Float, vodka: Float, bread: Float, veget: Float, xPeopleMeat: Float, xPeopleAlco: Float){
+        val context = context ?: activity!!.parent
+        val pref = AppPreference(context)
+        pref.saveResult1(chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat, xPeopleAlco)
+    }
+
+    fun loadOnClick(){
+        val context = context ?: activity!!.parent
+        val pref = AppPreference(context)
+        dataModel.result_value_chicken.value = pref.loadResult1().getValue("chicken")
+        dataModel.result_value_pig.value = pref.loadResult1().getValue("pig")
+        dataModel.result_value_muu.value = pref.loadResult1().getValue("muu")
+        dataModel.result_value_bear.value = pref.loadResult1().getValue("bear")
+        dataModel.result_value_vine.value = pref.loadResult1().getValue("vine")
+        dataModel.result_value_vodka.value = pref.loadResult1().getValue("vodka")
+        dataModel.result_value_bread.value = pref.loadResult1().getValue("bread")
+        dataModel.result_value_veget.value = pref.loadResult1().getValue("vegetable")
+        dataModel.main_titleResult_x_people_meat.value = pref.loadResult1().getValue("people_count_meat")
+        dataModel.main_titleResult_x_people_alco.value = pref.loadResult1().getValue("people_count_alco")
+    }
 
 }

@@ -190,12 +190,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:background="@drawable/button_bg"
                 android:id="@+id/btn_get_measure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center_horizontal"
-                android:text="@string/measuring_btn" />
+                android:text="@string/measuring_btn"
+                android:layout_marginBottom="3dp"/>
         </LinearLayout>
 
 

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_HIDDEN
+        dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_COLLAPSED
         dataModel.stateBottomSheetBehavior.observe(this, { bottomSheetBehavior.state = it })
     }
 

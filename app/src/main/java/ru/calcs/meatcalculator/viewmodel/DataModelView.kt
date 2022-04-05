@@ -21,13 +21,13 @@ class DataModelView : ViewModel() {
     }
 
     //титульник на Х человек мясо -> X : String
-    val main_titleResult_x_people_meat : MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    val main_titleResult_x_people_meat : MutableLiveData<Float> by lazy {
+        MutableLiveData<Float>()
     }
 
     //титульник на Х человек алко -> X : String
-    val main_titleResult_x_people_alco : MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    val main_titleResult_x_people_alco : MutableLiveData<Float> by lazy {
+        MutableLiveData<Float>()
     }
     //------------------------------------------------------------------
 

@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save_result"
                 android:textStyle="normal"
                 android:textSize="12sp"
                 android:background="@drawable/button_bg"
@@ -32,16 +33,17 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_load_result"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:background="@drawable/button_bg"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_share"
+                android:text="@string/btn_load"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:drawableEnd="@drawable/ic_share_black_24dp"/>
+                android:drawableEnd="@drawable/ic_cloud_download_black_24dp"/>
 
         </LinearLayout>
 
@@ -294,11 +296,11 @@
         <TextView
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/tv_desc_meat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/desc_meat"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:textSize="12sp"/>
         <TextView
@@ -311,6 +313,22 @@
             android:text="@string/desc_alco"
             android:layout_gravity="center_horizontal"
             android:textSize="12sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_share_result"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:background="@drawable/button_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_share"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_share_black_24dp"/>
+
+
 
     </LinearLayout>
 

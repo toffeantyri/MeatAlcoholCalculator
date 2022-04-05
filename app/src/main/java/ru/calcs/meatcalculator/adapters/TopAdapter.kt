@@ -84,7 +84,7 @@ class TopAdapter(dataModel: DataModelView) :
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
                     // каждый пункт отдельно для каждой позиции
                     if(position == 0 ) {
-                        dataModelInner.main_titleResult_x_people_meat.value = edText.text.toString()
+                        dataModelInner.main_titleResult_x_people_meat.value = edText.text.toString().toFloat()
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее мяса
                             c1_r1.id -> {
@@ -134,7 +134,7 @@ class TopAdapter(dataModel: DataModelView) :
                             dataModelInner.result_value_veget.value = howManyVeget(countPeople.toInt(), meatValue)
                         }
                     } else if (position == 1){
-                        dataModelInner.main_titleResult_x_people_alco.value = edText.text.toString()
+                        dataModelInner.main_titleResult_x_people_alco.value = edText.text.toString().toFloat()
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее алко
                             c1_r1.id -> {
