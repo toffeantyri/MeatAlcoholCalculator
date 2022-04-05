@@ -8,6 +8,7 @@
 
     <string name="main_title_text_choose">Листай-Выбирай:</string>
     <string name="measuring_btn">Рассчитать</string>
+    <string name="no_result">Нечем поделиться...</string>
 
     <string name="title_item_rctop">Расчёт мяса</string>
     <string name="title_item_rctop_alco">Расчёт алкоголя</string>
@@ -68,15 +69,19 @@
     <string name="RESULT_DESC_ITOGO_people">\ человека</string>
     <string name="RESULT_DESC_ITOGO_peoples">\ человек</string>
 
+    <string name="RESULT_DESC_ITOGO3_meat">\ мяса</string>
+    <string name="RESULT_DESC_ITOGO3_alco">\ алкоголя</string>
+
 
     <string name="btn_save">Сохранить</string>
     <string name="btn_load">Загрузить</string>
     <string name="btn_share">Поделиться</string>
+    <string name="link_on_app">\n http://googleplay.com</string>
 
 
     <string name="desc_meat">Расчёт мяса производится с учётом ужарки для разных видов мяса. Из расчёта: 300–400 грамм порция.</string>
     <string name="desc_alco">Расчёт алкоголя производится из расчёта на человека нормально восприимчивого к алкоголю. </string>
 
-
+    <string name="share_text_1">Расчёт мяса и алкоголя в приложении : </string>
 
 </resources>

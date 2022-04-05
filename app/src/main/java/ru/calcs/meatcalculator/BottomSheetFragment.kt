@@ -1,17 +1,21 @@
 package ru.calcs.meatcalculator
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.view.*
 import ru.calcs.meatcalculator.adapters.AppPreference
 import ru.calcs.meatcalculator.viewmodel.DataModelView
+import java.lang.StringBuilder
 
 //КОЭФИЦИЕНТ УЖАРКИ
 const val COEF_CHIKEN = 1.3F
@@ -23,6 +27,7 @@ const val COEF_BEAR = 1.4f
 const val COEF_VINE = 0.7f
 const val COEF_VODKA = 0.25f
 
+const val TAG = "MyLog"
 
 class BottomSheetFragment : Fragment() {
 
@@ -185,6 +190,20 @@ class BottomSheetFragment : Fragment() {
         view0.btn_load_result.setOnClickListener {
             loadOnClick()
         }
+
+        view0.btn_share_result.setOnClickListener {
+            val chicken : Float = dataModel.result_value_chicken.value ?: 0f
+            val pig : Float = dataModel.result_value_pig.value ?: 0f
+            val muu : Float = dataModel.result_value_muu.value ?: 0f
+            val bear : Float = dataModel.result_value_bear.value ?: 0f
+            val vine : Float = dataModel.result_value_vine.value ?: 0f
+            val vodka : Float = dataModel.result_value_vodka.value ?: 0f
+            val bread : Float = dataModel.result_value_bread.value ?: 0f
+            val veget : Float = dataModel.result_value_veget.value ?: 0f
+            val xPeopleMeat : Float = dataModel.main_titleResult_x_people_meat.value ?: 0f
+            val xPeopleAlco : Float = dataModel.main_titleResult_x_people_alco.value ?: 0f
+            shareOnClick(chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat, xPeopleAlco)
+        }
         return view0
     }
 
@@ -208,6 +227,40 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_veget.value = pref.loadResult1().getValue("vegetable")
         dataModel.main_titleResult_x_people_meat.value = pref.loadResult1().getValue("people_count_meat")
         dataModel.main_titleResult_x_people_alco.value = pref.loadResult1().getValue("people_count_alco")
+    }
+
+    fun shareOnClick(chicken: Float, pig: Float, muu: Float, bear: Float, vine: Float, vodka: Float, bread: Float, veget: Float, xPeopleMeat: Float, xPeopleAlco: Float){
+        val intent = Intent()
+        val myString = StringBuilder()
+        myString.apply {
+            if(xPeopleMeat != 0f){append(getString(R.string.RESULT_DESC_ITOGO1) + xPeopleMeat.toInt().toString() + getString(R.string.RESULT_DESC_ITOGO_peoples) + "," +getString(R.string.RESULT_DESC_ITOGO3_meat) + getString(R.string.RESULT_DESC_ITOGO2) + "\n" )}
+            if(chicken != 0f){append(String.format("%.2f", chicken) + getString(R.string.kg) + getString(R.string.chickens) + "\n")}
+            if(pig != 0f){append(String.format("%.2f", pig) + getString(R.string.kg) + getString(R.string.pigs) + "\n")}
+            if(muu != 0f){append(String.format("%.2f", muu) + getString(R.string.kg) + getString(R.string.muus) + "\n")}
+
+            if(bread != 0f){append(String.format("%.2f", bread) + " " + getString(R.string.breads) + "\n")}
+            if(veget != 0f){append(String.format("%.2f", veget) + " " + getString(R.string.vegetables) + "\n")}
+
+            if(xPeopleAlco != 0f){append(getString(R.string.RESULT_DESC_ITOGO1) + xPeopleAlco.toInt().toString() + getString(R.string.RESULT_DESC_ITOGO_peoples) + "," +getString(R.string.RESULT_DESC_ITOGO3_alco) + getString(R.string.RESULT_DESC_ITOGO2) + "\n" )}
+            if(bear != 0f){append(String.format("%.2f", bear) + getString(R.string.litrs) + getString(R.string.bears) + "\n")}
+            if(vine != 0f){append(String.format("%.2f", vine) + getString(R.string.litrs) + getString(R.string.vines) + "\n")}
+            if(vodka != 0f){append(String.format("%.2f", vodka) + getString(R.string.litrs) + getString(R.string.vodkas) + "\n")}
+        }
+
+        if(myString.toString() != ""){
+            val myString2 = StringBuilder().apply {
+                append(getString(R.string.share_text_1))
+                append(getString(R.string.link_on_app) + "\n")
+                append(myString.toString())
+            }
+            intent.setAction(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_TEXT, myString2.toString())
+            intent.setType("text/plain")
+            Log.d(TAG, myString2.toString())
+            startActivity(Intent.createChooser(intent, getString(R.string.btn_share)))
+        } else Toast.makeText(context, R.string.no_result, Toast.LENGTH_SHORT ).show()
+
+
     }
 
 }
