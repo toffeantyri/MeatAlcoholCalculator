@@ -2,12 +2,15 @@ package ru.calcs.meatcalculator.adapters
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.Toast
+import ru.calcs.meatcalculator.R
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
 const val APP_PREFER = "APP_PREFERENCE"
 
 class AppPreference(context: Context) {
 
+    val context0 = context
 
     var data: SharedPreferences = context.getSharedPreferences(APP_PREFER, Context.MODE_PRIVATE)
 
@@ -22,7 +25,7 @@ class AppPreference(context: Context) {
         data.edit().putFloat("vegetable", veget).apply()
         data.edit().putFloat("people_count_meat", XPeopleMeat).apply()
         data.edit().putFloat("people_count_alco", XPeopleAlco).apply()
-
+        Toast.makeText(context0, R.string.res_saved, Toast.LENGTH_SHORT).show()
     }
 
     fun loadResult1(): Map<String, Float>{
@@ -37,6 +40,7 @@ class AppPreference(context: Context) {
         map.put("vegetable",data.getFloat("vegetable", 0f))
         map.put("people_count_meat",data.getFloat("people_count_meat", 0f))
         map.put("people_count_alco",data.getFloat("people_count_alco", 0f))
+        Toast.makeText(context0, R.string.res_loaded, Toast.LENGTH_LONG).show()
 
         return map
     }

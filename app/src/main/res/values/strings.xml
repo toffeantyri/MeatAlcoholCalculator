@@ -9,6 +9,8 @@
     <string name="main_title_text_choose">Листай-Выбирай:</string>
     <string name="measuring_btn">Рассчитать</string>
     <string name="no_result">Нечем поделиться...</string>
+    <string name="res_saved">Сохранено</string>
+    <string name="res_loaded">Загружено</string>
 
     <string name="title_item_rctop">Расчёт мяса</string>
     <string name="title_item_rctop_alco">Расчёт алкоголя</string>
@@ -76,6 +78,7 @@
     <string name="btn_save">Сохранить</string>
     <string name="btn_load">Загрузить</string>
     <string name="btn_share">Поделиться</string>
+    <string name="btn_clear_res">Сброс</string>
     <string name="link_on_app">\n http://googleplay.com</string>
 
 

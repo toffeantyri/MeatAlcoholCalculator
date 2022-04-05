@@ -204,6 +204,10 @@ class BottomSheetFragment : Fragment() {
             val xPeopleAlco : Float = dataModel.main_titleResult_x_people_alco.value ?: 0f
             shareOnClick(chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat, xPeopleAlco)
         }
+
+        view0.btn_clear_res.setOnClickListener{
+            clearResultOnClick()
+        }
         return view0
     }
 
@@ -263,4 +267,23 @@ class BottomSheetFragment : Fragment() {
 
     }
 
+    fun clearResultOnClick(){
+        dataModel.apply {
+            result_value_meat.value = 0f
+            result_value_alco.value = 0f
+
+            result_value_chicken.value = 0f
+            result_value_pig.value = 0f
+            result_value_muu.value = 0f
+
+            result_value_bread.value = 0f
+            result_value_veget.value = 0f
+
+            result_value_bear.value = 0f
+            result_value_vine.value = 0f
+            result_value_vodka.value = 0f
+
+
+        }
+    }
 }
