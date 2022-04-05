@@ -221,16 +221,17 @@ class BottomSheetFragment : Fragment() {
     fun loadOnClick(){
         val context = context ?: activity!!.parent
         val pref = AppPreference(context)
-        dataModel.result_value_chicken.value = pref.loadResult1().getValue("chicken")
-        dataModel.result_value_pig.value = pref.loadResult1().getValue("pig")
-        dataModel.result_value_muu.value = pref.loadResult1().getValue("muu")
-        dataModel.result_value_bear.value = pref.loadResult1().getValue("bear")
-        dataModel.result_value_vine.value = pref.loadResult1().getValue("vine")
-        dataModel.result_value_vodka.value = pref.loadResult1().getValue("vodka")
-        dataModel.result_value_bread.value = pref.loadResult1().getValue("bread")
-        dataModel.result_value_veget.value = pref.loadResult1().getValue("vegetable")
-        dataModel.main_titleResult_x_people_meat.value = pref.loadResult1().getValue("people_count_meat")
-        dataModel.main_titleResult_x_people_alco.value = pref.loadResult1().getValue("people_count_alco")
+        val map = pref.loadResult1()
+        dataModel.result_value_chicken.value = map.getValue("chicken")
+        dataModel.result_value_pig.value = map.getValue("pig")
+        dataModel.result_value_muu.value = map.getValue("muu")
+        dataModel.result_value_bear.value = map.getValue("bear")
+        dataModel.result_value_vine.value = map.getValue("vine")
+        dataModel.result_value_vodka.value = map.getValue("vodka")
+        dataModel.result_value_bread.value = map.getValue("bread")
+        dataModel.result_value_veget.value = map.getValue("vegetable")
+        dataModel.main_titleResult_x_people_meat.value = map.getValue("people_count_meat")
+        dataModel.main_titleResult_x_people_alco.value = map.getValue("people_count_alco")
     }
 
     fun shareOnClick(chicken: Float, pig: Float, muu: Float, bear: Float, vine: Float, vodka: Float, bread: Float, veget: Float, xPeopleMeat: Float, xPeopleAlco: Float){
@@ -271,6 +272,9 @@ class BottomSheetFragment : Fragment() {
         dataModel.apply {
             result_value_meat.value = 0f
             result_value_alco.value = 0f
+
+            main_titleResult_x_people_meat.value = 0f
+            main_titleResult_x_people_alco.value = 0f
 
             result_value_chicken.value = 0f
             result_value_pig.value = 0f
