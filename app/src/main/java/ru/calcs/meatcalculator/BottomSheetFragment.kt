@@ -11,13 +11,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
+import com.yandex.mobile.ads.common.*
+import com.yandex.mobile.ads.interstitial.InterstitialAd
+import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.view.*
 import ru.calcs.meatcalculator.adapters.AppPreference
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 import java.lang.StringBuilder
 
 //КОЭФИЦИЕНТ УЖАРКИ
-const val COEF_FISH = 1.3F
+const val COEF_FISH = 1.18F
 const val COEF_CHIKEN = 1.3F
 const val COEF_PIG = 1.35f
 const val COEF_MUU = 1.4f
@@ -31,6 +34,8 @@ const val TAG = "MyLog"
 
 class BottomSheetFragment : Fragment() {
 
+    var myInterStitialAd: InterstitialAd? = null
+
     val dataModel: DataModelView by activityViewModels()
     var position: Int = -1
 
@@ -39,6 +44,12 @@ class BottomSheetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view0 = inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
+
+
+        myInterStitialAd = InterstitialAd(context!!)
+        initAndloadInterStitialAd()
+
+
 
         dataModel.positionRC.observe(this as LifecycleOwner) {
             position = it
@@ -160,7 +171,6 @@ class BottomSheetFragment : Fragment() {
             }
         }
 
-
         dataModel.result_value_bread.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_bread.text =
@@ -191,7 +201,9 @@ class BottomSheetFragment : Fragment() {
             val xPeopleMeat: Float = dataModel.main_titleResult_x_people_meat.value ?: 0f
             val xPeopleAlco: Float = dataModel.main_titleResult_x_people_alco.value ?: 0f
             saveOnClick(fish, chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat, xPeopleAlco)
+            myInterStitialAd?.show()
         }
+
         view0.btn_load_result.setOnClickListener {
             loadOnClick()
         }
@@ -352,4 +364,34 @@ class BottomSheetFragment : Fragment() {
 
         }
     }
+
+
+    fun initAndloadInterStitialAd() {
+        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id_test))
+        myInterStitialAd?.setInterstitialAdEventListener(object : InterstitialAdEventListener{
+            override fun onAdLoaded() {
+                Log.d(TAG, "InterStitial Ad is Loaded Succesfull")
+            }
+            override fun onAdFailedToLoad(p0: AdRequestError) {
+                Log.d(TAG, "InterStitial Ad Failed toLoad: ${p0.description}")
+            }
+            override fun onAdShown() {
+            }
+            override fun onAdDismissed() {
+            }
+            override fun onAdClicked() {
+            }
+            override fun onLeftApplication() {
+            }
+            override fun onReturnedToApplication() {
+            }
+            override fun onImpression(p0: ImpressionData?) {
+            }
+
+        })
+        val adRequest : AdRequest = AdRequest.Builder().build()
+        myInterStitialAd?.loadAd(adRequest)
+    }
+
+
 }

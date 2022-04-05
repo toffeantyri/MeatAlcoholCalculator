@@ -74,7 +74,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="Итого на Х человек понадобится мяса:" />
+                    android:text="Итого на Х человек понадобится мяса:"
+                    android:visibility="gone"/>
 
 
                 <LinearLayout
@@ -234,7 +235,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="Итого на Х человек понадобится  алкоголя" />
+                    android:text="Итого на Х человек понадобится  алкоголя"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:id="@+id/container_bear_result"

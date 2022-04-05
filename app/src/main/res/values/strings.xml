@@ -3,7 +3,10 @@
 
 
     <string name="yandex_banner_id_test" translatable="false">R-M-DEMO-320x50</string>
-    <string name="yandex_banner_id" translatable="false"></string>
+    <string name="yandex_banner_id" translatable="false">R-M-1619549-1</string>
+
+    <string name="yandex_interstitial_id_test" translatable="false">R-M-DEMO-400x240-context</string>
+    <string name="yandex_interstitial_id" translatable="false">R-M-1619549-2</string>
 
 
     <string name="main_title_text_choose">Листай-Выбирай:</string>

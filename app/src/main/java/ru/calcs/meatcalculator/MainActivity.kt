@@ -13,6 +13,7 @@ import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
+import com.yandex.mobile.ads.common.InitializationListener
 import com.yandex.mobile.ads.common.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
@@ -78,7 +79,9 @@ class MainActivity : AppCompatActivity() {
 
 
     fun initMobileAdsYandex() {
-        MobileAds.initialize(this) { Log.d("MyLog", "SDK Initialised OK") }
+        MobileAds.initialize(this) {
+            InitializationListener { Log.d("MyLog", "SDK Initialised OK") }
+        }
     }
 
     fun setUpBanner(){
@@ -92,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         adViewYandex.setBannerAdEventListener(object : BannerAdEventListener {
             override fun onAdLoaded() {
-                Log.d("MyLog", "Ad Loaded Ok")
+                Log.d("MyLog", "Ad Banner Loaded Ok")
             }
 
             override fun onAdFailedToLoad(p0: AdRequestError) {
