@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:drawableStart="@drawable/ic_meatall"
-                        android:text="@string/all_meat" />
+                        android:text="@string/fish" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         style="@style/radioButtonStyle"

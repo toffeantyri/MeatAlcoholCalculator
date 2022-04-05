@@ -86,7 +86,7 @@ class TopAdapter(dataModel: DataModelView) :
                     if(position == 0 ) {
                         dataModelInner.main_titleResult_x_people_meat.value = edText.text.toString().toFloat()
                         when (radioGroup1.checkedRadioButtonId) {
-                            //общее мяса
+                            //рыбы
                             c1_r1.id -> {
                                 meatValue = howManyMeatorAlcoAllNoType(
                                     position,
@@ -94,7 +94,7 @@ class TopAdapter(dataModel: DataModelView) :
                                     radioGroup1.checkedRadioButtonId,
                                     radioGroup2.checkedRadioButtonId,
                                 )
-                                dataModelInner.result_value_meat.value = meatValue
+                                dataModelInner.result_value_fish.value = meatValue
                             }
                             //куры
                             c1_r2.id -> {
@@ -254,12 +254,9 @@ class TopAdapter(dataModel: DataModelView) :
         return (meatKGvalue/0.3f)*coefOne
     }
 
-
-
-
     fun clearCurrentResultFromPosition(pos : Int){
         if(pos == 0) {
-            dataModelInner.result_value_meat.value = null
+            dataModelInner.result_value_fish.value = null
             dataModelInner.result_value_chicken.value = null
             dataModelInner.result_value_pig.value = null
             dataModelInner.result_value_muu.value = null

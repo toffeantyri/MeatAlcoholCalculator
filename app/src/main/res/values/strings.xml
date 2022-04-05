@@ -17,10 +17,12 @@
 
     <string name="title_column1">Какое мясо?</string>
     <string name="all_meat">\ Разное</string>
+    <string name="fish">\ Рыба</string>
     <string name="chicken">\ Курица</string>
     <string name="pig">\ Свинина</string>
     <string name="muu">\ Говядина</string>
 
+    <string name="fishs">\ Рыбы</string>
     <string name="chickens">\ Курицы</string>
     <string name="pigs">\ Свинины</string>
     <string name="muus">\ Говядины</string>

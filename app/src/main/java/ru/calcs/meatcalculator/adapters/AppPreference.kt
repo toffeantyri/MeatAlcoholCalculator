@@ -14,7 +14,8 @@ class AppPreference(context: Context) {
 
     var data: SharedPreferences = context.getSharedPreferences(APP_PREFER, Context.MODE_PRIVATE)
 
-    fun saveResult1(chicken: Float, pig: Float, muu: Float, bear: Float, vine: Float, vodka: Float, bread: Float, veget: Float, XPeopleMeat: Float, XPeopleAlco: Float) {
+    fun saveResult1(fish: Float, chicken: Float, pig: Float, muu: Float, bear: Float, vine: Float, vodka: Float, bread: Float, veget: Float, XPeopleMeat: Float, XPeopleAlco: Float) {
+        data.edit().putFloat("fish", fish).apply()
         data.edit().putFloat("chicken", chicken).apply()
         data.edit().putFloat("pig", pig).apply()
         data.edit().putFloat("muu", muu).apply()
@@ -30,7 +31,8 @@ class AppPreference(context: Context) {
 
     fun loadResult1(): Map<String, Float>{
         val map = mutableMapOf<String, Float>()
-        map.put("chicken",data.getFloat("chicken", 0f) )
+        map.put("fish",data.getFloat("fish", 0f))
+        map.put("chicken",data.getFloat("chicken", 0f))
         map.put("pig",data.getFloat("pig", 0f))
         map.put("muu",data.getFloat("muu", 0f))
         map.put("bear",data.getFloat("bear", 0f))

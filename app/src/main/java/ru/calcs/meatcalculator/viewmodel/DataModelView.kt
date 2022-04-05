@@ -31,13 +31,6 @@ class DataModelView : ViewModel() {
     }
     //------------------------------------------------------------------
 
-    //общее количество мяса
-    val result_value_meat: MutableLiveData<Float> by lazy {
-        MutableLiveData<Float>()
-    }
-    init{
-        result_value_meat.value = null
-    }
     //количество курицы
     val result_value_chicken: MutableLiveData<Float> by lazy {
         MutableLiveData<Float>()
@@ -45,6 +38,15 @@ class DataModelView : ViewModel() {
     init{
         result_value_chicken.value = null
     }
+
+    //количество рыбы
+    val result_value_fish: MutableLiveData<Float> by lazy {
+        MutableLiveData<Float>()
+    }
+    init{
+        result_value_fish.value = null
+    }
+
     //количество свинины
     val result_value_pig: MutableLiveData<Float> by lazy {
         MutableLiveData<Float>()

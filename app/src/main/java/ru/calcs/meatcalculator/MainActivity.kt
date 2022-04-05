@@ -139,12 +139,12 @@ class MainActivity : AppCompatActivity() {
             column1Title = getString(R.string.title_column1)
             column2Title = getString(R.string.title_column2)
 
-            c1radio1 = getString(R.string.all_meat)
+            c1radio1 = getString(R.string.fish)
             c1radio2 = getString(R.string.chicken)
             c1radio3 = getString(R.string.pig)
             c1radio4 = getString(R.string.muu)
 
-            c1radio1Image = R.drawable.ic_meatall
+            c1radio1Image = R.drawable.ic_chicken
             c1radio2Image = R.drawable.ic_chicken
             c1radio3Image = R.drawable.ic_pig
             c1radio4Image = R.drawable.ic_muu
