@@ -46,7 +46,7 @@ class BottomSheetFragment : Fragment() {
         val view0 = inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
 
 
-        myInterStitialAd = InterstitialAd(context!!)
+        myInterStitialAd = InterstitialAd(requireContext())
         initAndloadInterStitialAd()
 
 
@@ -62,8 +62,7 @@ class BottomSheetFragment : Fragment() {
 
             if (it != null && it.toInt() > 0) {
                 view0.main_title_x_people_meat.text =
-                    (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt()
-                        .toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
+                    (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt().toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
             }
         }
         dataModel.meatValueIsNoEmpty.observe(this as LifecycleOwner) {
@@ -254,13 +253,13 @@ class BottomSheetFragment : Fragment() {
         xPeopleMeat: Float,
         xPeopleAlco: Float
     ) {
-        val context = context ?: activity!!.parent
+        val context = context ?: requireActivity().parent
         val pref = AppPreference(context)
         pref.saveResult1(fish, chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat, xPeopleAlco)
     }
 
     fun loadOnClick() {
-        val context = context ?: activity!!.parent
+        val context = context ?: requireActivity().parent
         val pref = AppPreference(context)
         val map = pref.loadResult1()
         dataModel.result_value_fish.value = map.getValue("fish")
@@ -318,10 +317,10 @@ class BottomSheetFragment : Fragment() {
             }
 
             if (bread != 0f) {
-                append(String.format("%.2f", bread) + " " + getString(R.string.breads) + "\n")
+                append(String.format("%.0f", bread*1000) + getString(R.string.gramm) + getString(R.string.breads) + "\n")
             }
             if (veget != 0f) {
-                append(String.format("%.2f", veget) + " " + getString(R.string.vegetables) + "\n")
+                append(String.format("%.2f", veget) +getString(R.string.kg) + getString(R.string.vegetables) + "\n")
             }
 
             if (xPeopleAlco != 0f) {
@@ -386,7 +385,7 @@ class BottomSheetFragment : Fragment() {
 
 
     fun initAndloadInterStitialAd() {
-        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id_test))
+        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id))
         myInterStitialAd?.setInterstitialAdEventListener(object : InterstitialAdEventListener {
             override fun onAdLoaded() {
                 Log.d(TAG, "InterStitial Ad is Loaded Succesfull")
