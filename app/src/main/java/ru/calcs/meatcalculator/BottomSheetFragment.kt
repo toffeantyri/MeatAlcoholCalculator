@@ -20,15 +20,15 @@ import ru.calcs.meatcalculator.viewmodel.DataModelView
 import java.lang.StringBuilder
 
 //КОЭФИЦИЕНТ УЖАРКИ
-const val COEF_FISH = 1.18F
+const val COEF_FISH = 1.2F
 const val COEF_CHIKEN = 1.3F
 const val COEF_PIG = 1.35f
 const val COEF_MUU = 1.4f
 
 //СКОЛЬКО ДЛЯ 1 ОПЬЯНЕНИЯ (типа порция на пару часов)
-const val COEF_BEAR = 1.4f
+const val COEF_BEAR = 1.5f
 const val COEF_VINE = 0.7f
-const val COEF_VODKA = 0.25f
+const val COEF_VODKA = 0.2f
 
 const val TAG = "MyLog"
 

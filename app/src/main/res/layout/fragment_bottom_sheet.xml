@@ -25,7 +25,7 @@
                 android:background="@drawable/button_bg"
                 android:drawableEnd="@drawable/ic_save_black_24dp"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_save"
                 android:layout_marginStart="10dp"
@@ -38,7 +38,7 @@
                 android:textStyle="normal"
                 android:background="@drawable/button_bg"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_load"
                 android:layout_marginStart="10dp"
@@ -352,11 +352,11 @@
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:background="@drawable/button_bg"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_share"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:drawableEnd="@drawable/ic_share_black_24dp"/>
 
             <com.google.android.material.button.MaterialButton
@@ -366,11 +366,11 @@
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:background="@drawable/button_bg"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_clear_res"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:drawableEnd="@drawable/ic_delete_forever_black_24dp"/>
 
 

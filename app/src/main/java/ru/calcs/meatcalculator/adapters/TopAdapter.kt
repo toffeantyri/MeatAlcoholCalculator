@@ -228,13 +228,13 @@ class TopAdapter(dataModel: DataModelView) :
                 listIdColumnRadio2[3] -> 4f    //over
                 else -> 1.0f
             }
-            countProd = (0.3f*peopleCount*coefTime)
+            countProd = (0.35f*peopleCount*coefTime)
         }
 
         if (pos == 1) {
                 coefTime = when (toggleTitle2) {
                 listIdColumnRadio2[0] -> 1.0f    //low
-                listIdColumnRadio2[1] -> 2f   // medium
+                listIdColumnRadio2[1] -> 1.9f   // medium
                 listIdColumnRadio2[2] -> 2.75f   //max
                 listIdColumnRadio2[3] -> 4.5f //over
                 else -> 1.0f

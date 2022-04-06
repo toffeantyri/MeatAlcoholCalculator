@@ -2,6 +2,7 @@ package ru.calcs.meatcalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -32,12 +33,12 @@ class MainActivity : AppCompatActivity() {
     val dataModel: DataModelView by viewModels()
     val listRc: ArrayList<ShablonDataList> = arrayListOf()
     private var job: Job? = null // для корутины на запуске
+    val handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initTopRV()
-        initMobileAdsYandex()
+        //initMobileAdsYandex()
         setUpBanner()
         bottomSheetBehavior = BottomSheetBehavior.from(main_bottom_sheets)
 
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        initTopRV()
         dataModel.stateBottomSheetBehavior.value = BottomSheetBehavior.STATE_COLLAPSED
         dataModel.stateBottomSheetBehavior.observe(this, { bottomSheetBehavior.state = it })
     }
@@ -78,11 +80,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun initMobileAdsYandex() {
-        MobileAds.initialize(this) {
-            InitializationListener { Log.d("MyLog", "SDK yandex Initialised OK") }
-        }
-    }
+//    fun initMobileAdsYandex() {
+//        MobileAds.initialize(this) {
+//            InitializationListener { Log.d("MyLog", "SDK yandex Initialised OK") }
+//        }
+//    }
 
     fun setUpBanner(){
         adViewYandex.apply {
@@ -183,4 +185,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    var double_back_press = false
+    override fun onBackPressed() {
+        if (double_back_press == true) {
+            super.onBackPressed()
+        }
+        double_back_press = true
+        handler.postDelayed({ double_back_press = false }, 1800)
+    }
 }
