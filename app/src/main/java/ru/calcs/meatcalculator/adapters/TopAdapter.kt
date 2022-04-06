@@ -85,6 +85,7 @@ class TopAdapter(dataModel: DataModelView) :
                     // каждый пункт отдельно для каждой позиции
                     if(position == 0 ) {
                         dataModelInner.main_titleResult_x_people_meat.value = edText.text.toString().toFloat()
+                        dataModelInner.meatValueIsNoEmpty.value = true
                         when (radioGroup1.checkedRadioButtonId) {
                             //рыбы
                             c1_r1.id -> {
@@ -135,6 +136,7 @@ class TopAdapter(dataModel: DataModelView) :
                         }
                     } else if (position == 1){
                         dataModelInner.main_titleResult_x_people_alco.value = edText.text.toString().toFloat()
+                        dataModelInner.alcoValueIsNoEmpty.value = true
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее алко
                             c1_r1.id -> {
@@ -256,6 +258,8 @@ class TopAdapter(dataModel: DataModelView) :
 
     fun clearCurrentResultFromPosition(pos : Int){
         if(pos == 0) {
+            dataModelInner.meatValueIsNoEmpty.value = false
+            dataModelInner.main_titleResult_x_people_meat.value = null
             dataModelInner.result_value_fish.value = null
             dataModelInner.result_value_chicken.value = null
             dataModelInner.result_value_pig.value = null
@@ -263,6 +267,8 @@ class TopAdapter(dataModel: DataModelView) :
             dataModelInner.result_value_bread.value = null
             dataModelInner.result_value_veget.value = null
         } else if(pos == 1){
+            dataModelInner.alcoValueIsNoEmpty.value = false
+            dataModelInner.main_titleResult_x_people_alco.value = null
             dataModelInner.result_value_alco.value = null
             dataModelInner.result_value_bear.value = null
             dataModelInner.result_value_vine.value = null

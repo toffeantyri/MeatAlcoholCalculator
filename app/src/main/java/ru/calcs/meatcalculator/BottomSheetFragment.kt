@@ -58,32 +58,41 @@ class BottomSheetFragment : Fragment() {
         //наблюдатель итого на Х человек мясо
         dataModel.main_titleResult_x_people_meat.observe(this as LifecycleOwner) {
             val peopleTextCount =
-                if (it.toInt() > 1) getString(R.string.RESULT_DESC_ITOGO_peoples) else getString(R.string.RESULT_DESC_ITOGO_people)
-            if ((dataModel.result_value_fish.value != null && dataModel.result_value_fish.value != 0f) || (dataModel.result_value_chicken.value != null && dataModel.result_value_chicken.value != 0f) ||
-                (dataModel.result_value_pig.value != null && dataModel.result_value_pig.value != 0f) || (dataModel.result_value_muu.value != null && dataModel.result_value_muu.value != 0f)
-            ) {
-                view0.main_title_x_people_meat.visibility = View.VISIBLE
-            } else view0.main_title_x_people_meat.visibility = View.GONE
-            view0.main_title_x_people_meat.text =
-                (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt()
-                    .toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
-        }
+                if (it != null && it.toInt() > 1) getString(R.string.RESULT_DESC_ITOGO_peoples) else getString(R.string.RESULT_DESC_ITOGO_people)
 
+            if (it != null && it.toInt() > 0) {
+                view0.main_title_x_people_meat.text =
+                    (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt()
+                        .toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
+            }
+        }
+        dataModel.meatValueIsNoEmpty.observe(this as LifecycleOwner) {
+            if (it) {
+                view0.main_title_x_people_meat.visibility = View.VISIBLE
+            } else {
+                view0.main_title_x_people_meat.visibility = View.GONE
+            }
+        }
 
         //наблюдатель итого на Х человек алко
         dataModel.main_titleResult_x_people_alco.observe(this as LifecycleOwner) {
             val peopleTextCount =
-                if (it.toInt() > 1) getString(R.string.RESULT_DESC_ITOGO_peoples) else getString(R.string.RESULT_DESC_ITOGO_people)
-            if ((dataModel.result_value_bear.value != null && dataModel.result_value_bear.value != 0f) || (dataModel.result_value_vine.value != null && dataModel.result_value_vine.value != 0f) ||
-                (dataModel.result_value_vodka.value != null && dataModel.result_value_vodka.value != 0f)
-            ) {
+                if (it != null && it.toInt() > 1) getString(R.string.RESULT_DESC_ITOGO_peoples) else getString(R.string.RESULT_DESC_ITOGO_people)
+
+            if (it != null && it.toInt() > 0) {
+                view0.main_title_x_people_alco.text =
+                    (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt()
+                        .toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
+            }
+
+        }
+
+        dataModel.alcoValueIsNoEmpty.observe(this as LifecycleOwner) {
+            if (it) {
                 view0.main_title_x_people_alco.visibility = View.VISIBLE
-            } else view0.main_title_x_people_alco.visibility = View.GONE
-
-            view0.main_title_x_people_alco.text =
-                (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt()
-                    .toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
-
+            } else {
+                view0.main_title_x_people_alco.visibility = View.GONE
+            }
         }
 
 
@@ -201,7 +210,9 @@ class BottomSheetFragment : Fragment() {
             val xPeopleMeat: Float = dataModel.main_titleResult_x_people_meat.value ?: 0f
             val xPeopleAlco: Float = dataModel.main_titleResult_x_people_alco.value ?: 0f
             saveOnClick(fish, chicken, pig, muu, bear, vine, vodka, bread, veget, xPeopleMeat, xPeopleAlco)
-            myInterStitialAd?.show()
+            if (myInterStitialAd?.isLoaded!!) {
+                myInterStitialAd?.show()
+            }
         }
 
         view0.btn_load_result.setOnClickListener {
@@ -263,6 +274,12 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_veget.value = map.getValue("vegetable")
         dataModel.main_titleResult_x_people_meat.value = map.getValue("people_count_meat")
         dataModel.main_titleResult_x_people_alco.value = map.getValue("people_count_alco")
+        if (dataModel.result_value_fish.value!! > 0f || dataModel.result_value_chicken.value!! > 0f || dataModel.result_value_pig.value!! > 0f || dataModel.result_value_muu.value!! > 0f) {
+            dataModel.meatValueIsNoEmpty.value = true
+        }
+        if (dataModel.result_value_bear.value!! > 0f || dataModel.result_value_vine.value!! > 0f || dataModel.result_value_vodka.value!! > 0f) {
+            dataModel.alcoValueIsNoEmpty.value = true
+        }
     }
 
     fun shareOnClick(
@@ -310,9 +327,9 @@ class BottomSheetFragment : Fragment() {
             if (xPeopleAlco != 0f) {
                 append(
                     getString(R.string.RESULT_DESC_ITOGO1) + xPeopleAlco.toInt()
-                        .toString() + getString(R.string.RESULT_DESC_ITOGO_peoples) + "," + getString(R.string.RESULT_DESC_ITOGO3_alco) + getString(
-                        R.string.RESULT_DESC_ITOGO2
-                    ) + "\n"
+                        .toString() + getString(R.string.RESULT_DESC_ITOGO_peoples) + "," + getString(
+                        R.string.RESULT_DESC_ITOGO2_1
+                    ) + getString(R.string.RESULT_DESC_ITOGO3_1_alco) + "\n"
                 )
             }
             if (bear != 0f) {
@@ -349,6 +366,8 @@ class BottomSheetFragment : Fragment() {
 
             main_titleResult_x_people_meat.value = 0f
             main_titleResult_x_people_alco.value = 0f
+            meatValueIsNoEmpty.value = false
+            alcoValueIsNoEmpty.value = false
 
             result_value_chicken.value = 0f
             result_value_pig.value = 0f
@@ -368,28 +387,35 @@ class BottomSheetFragment : Fragment() {
 
     fun initAndloadInterStitialAd() {
         myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id_test))
-        myInterStitialAd?.setInterstitialAdEventListener(object : InterstitialAdEventListener{
+        myInterStitialAd?.setInterstitialAdEventListener(object : InterstitialAdEventListener {
             override fun onAdLoaded() {
                 Log.d(TAG, "InterStitial Ad is Loaded Succesfull")
             }
+
             override fun onAdFailedToLoad(p0: AdRequestError) {
                 Log.d(TAG, "InterStitial Ad Failed toLoad: ${p0.description}")
             }
+
             override fun onAdShown() {
             }
+
             override fun onAdDismissed() {
             }
+
             override fun onAdClicked() {
             }
+
             override fun onLeftApplication() {
             }
+
             override fun onReturnedToApplication() {
             }
+
             override fun onImpression(p0: ImpressionData?) {
             }
 
         })
-        val adRequest : AdRequest = AdRequest.Builder().build()
+        val adRequest: AdRequest = AdRequest.Builder().build()
         myInterStitialAd?.loadAd(adRequest)
     }
 

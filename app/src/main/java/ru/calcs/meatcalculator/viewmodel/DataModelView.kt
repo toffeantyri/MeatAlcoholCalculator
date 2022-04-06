@@ -25,9 +25,23 @@ class DataModelView : ViewModel() {
         MutableLiveData<Float>()
     }
 
+    val meatValueIsNoEmpty : MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+    init{
+        meatValueIsNoEmpty.value = false
+    }
+
+
     //титульник на Х человек алко -> X : String
     val main_titleResult_x_people_alco : MutableLiveData<Float> by lazy {
         MutableLiveData<Float>()
+    }
+    val alcoValueIsNoEmpty : MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+    init {
+        alcoValueIsNoEmpty.value = false
     }
     //------------------------------------------------------------------
 

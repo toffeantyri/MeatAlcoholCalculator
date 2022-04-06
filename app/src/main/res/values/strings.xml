@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Meat Calculator</string>
+    <string name="app_name">Калькулятор шашлыка</string>
 
 
     <string name="yandex_banner_id_test" translatable="false">R-M-DEMO-320x50</string>
@@ -11,7 +11,7 @@
 
     <string name="main_title_text_choose">Листай-Выбирай:</string>
     <string name="measuring_btn">Рассчитать</string>
-    <string name="no_result">Нечем поделиться...</string>
+    <string name="no_result">Нечем поделиться…</string>
     <string name="res_saved">Сохранено</string>
     <string name="res_loaded">Загружено</string>
 
@@ -73,11 +73,13 @@
 
     <string name="RESULT_DESC_ITOGO1">Итого на \ </string>
     <string name="RESULT_DESC_ITOGO2">\ понадобиться: </string>
+    <string name="RESULT_DESC_ITOGO2_1">\ понадобиться </string>
     <string name="RESULT_DESC_ITOGO_people">\ человека</string>
     <string name="RESULT_DESC_ITOGO_peoples">\ человек</string>
 
     <string name="RESULT_DESC_ITOGO3_meat">\ мяса</string>
     <string name="RESULT_DESC_ITOGO3_alco">\ алкоголя</string>
+    <string name="RESULT_DESC_ITOGO3_1_alco">\ алкоголя:</string>
 
 
     <string name="btn_save">Сохранить</string>

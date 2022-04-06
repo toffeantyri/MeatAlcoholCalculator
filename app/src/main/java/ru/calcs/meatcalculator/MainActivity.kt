@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         loadAndShowBanner()
         job = CoroutineScope(Dispatchers.IO).launch {
-            Log.d(TAG, job.toString())
+            Log.d(TAG, "Coroutine start: $job")
 
             if (adapterTop.list.isEmpty()) {
                 listRc.builderListOfShablonClass()
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (supportFragmentManager.findFragmentById(R.id.bottom_sheet_frame) == null) {
-                Log.d(TAG, "Fragment replased")
+                Log.d(TAG, "inCoroutine : Fragment replased")
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.bottom_sheet_frame, BottomSheetFragment())
                     .commit()
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
     fun initMobileAdsYandex() {
         MobileAds.initialize(this) {
-            InitializationListener { Log.d("MyLog", "SDK Initialised OK") }
+            InitializationListener { Log.d("MyLog", "SDK yandex Initialised OK") }
         }
     }
 
@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
             c1radio3 = getString(R.string.pig)
             c1radio4 = getString(R.string.muu)
 
-            c1radio1Image = R.drawable.ic_chicken
+            c1radio1Image = R.drawable.ic_fish
             c1radio2Image = R.drawable.ic_chicken
             c1radio3Image = R.drawable.ic_pig
             c1radio4Image = R.drawable.ic_muu
