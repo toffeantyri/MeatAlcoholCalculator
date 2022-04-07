@@ -37,7 +37,7 @@ class BottomSheetFragment : Fragment() {
     var myInterStitialAd: InterstitialAd? = null
 
     val dataModel: DataModelView by activityViewModels()
-    var position: Int = -1
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,11 +49,6 @@ class BottomSheetFragment : Fragment() {
         myInterStitialAd = InterstitialAd(requireContext())
         initAndloadInterStitialAd()
 
-
-
-        dataModel.positionRC.observe(this as LifecycleOwner) {
-            position = it
-        }
 
         //наблюдатель итого на Х человек мясо
         dataModel.main_titleResult_x_people_meat.observe(this as LifecycleOwner) {
@@ -385,7 +380,7 @@ class BottomSheetFragment : Fragment() {
 
 
     fun initAndloadInterStitialAd() {
-        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id))
+        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id_test))
         myInterStitialAd?.setInterstitialAdEventListener(object : InterstitialAdEventListener {
             override fun onAdLoaded() {
                 Log.d(TAG, "InterStitial Ad is Loaded Succesfull")

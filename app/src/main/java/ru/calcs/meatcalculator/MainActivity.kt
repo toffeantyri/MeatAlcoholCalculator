@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     fun setUpBanner(){
         adViewYandex.apply {
             setAdSize(AdSize.BANNER_320x50)
-            setAdUnitId(getString(R.string.yandex_banner_id))
+            setAdUnitId(getString(R.string.yandex_banner_id_test))
         }
     }
 
