@@ -20,17 +20,6 @@ import ru.calcs.meatcalculator.adapters.AppPreference
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 import java.lang.StringBuilder
 
-//КОЭФИЦИЕНТ УЖАРКИ
-const val COEF_FISH = 1.2F
-const val COEF_CHIKEN = 1.3F
-const val COEF_PIG = 1.35f
-const val COEF_MUU = 1.4f
-
-//СКОЛЬКО ДЛЯ 1 ОПЬЯНЕНИЯ (типа порция на пару часов)
-const val COEF_BEAR = 1.5f
-const val COEF_VINE = 0.7f
-const val COEF_VODKA = 0.2f
-
 const val TAG = "MyLog"
 
 class BottomSheetFragment : Fragment() {
@@ -95,7 +84,7 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_fish.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_fish_kg.text =
-                    (String.format("%.2f", it * COEF_FISH) + getString(R.string.kg) + getString(R.string.fishs))
+                    (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.fishs))
                 view0.container_fish_result.visibility = View.VISIBLE
             } else {
                 view0.container_fish_result.visibility = View.GONE
@@ -105,7 +94,7 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_chicken.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_chiken_kg.text =
-                    (String.format("%.2f", it * COEF_CHIKEN) + getString(R.string.kg) + getString(R.string.chickens))
+                    (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.chickens))
                 view0.container_chicken_result.visibility = View.VISIBLE
             } else {
                 view0.container_chicken_result.visibility = View.GONE
@@ -115,7 +104,7 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_pig.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_pig_kg.text =
-                    (String.format("%.2f", it * COEF_PIG) + getString(R.string.kg) + getString(R.string.pigs))
+                    (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.pigs))
                 view0.container_pig_result.visibility = View.VISIBLE
             } else {
                 view0.container_pig_result.visibility = View.GONE
@@ -125,28 +114,17 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_muu.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_muu_kg.text =
-                    (String.format("%.2f", it * COEF_MUU) + getString(R.string.kg) + getString(R.string.muus))
+                    (String.format("%.2f", it) + getString(R.string.kg) + getString(R.string.muus))
                 view0.container_muu_result.visibility = View.VISIBLE
             } else {
                 view0.container_muu_result.visibility = View.GONE
             }
         }
 
-        dataModel.result_value_alco.observe(this as LifecycleOwner) {
-            if (it != null && it != 0f) {
-                dataModel.result_value_bear.value = (it * COEF_BEAR) * 0.2f
-                dataModel.result_value_vine.value = (it * COEF_VINE) * 0.25f
-                dataModel.result_value_vodka.value = (it * COEF_VODKA) * 0.55f
-                dataModel.result_value_alco.value = 0f
-            }
-        }
-
         dataModel.result_value_bear.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
-                view0.tvResult_value_bear_litr.text = (String.format(
-                    "%.2f",
-                    it * COEF_BEAR
-                ) + getString(R.string.litrs) + getString(R.string.bears))
+                view0.tvResult_value_bear_litr.text =
+                    (String.format("%.2f", it) + getString(R.string.litrs) + getString(R.string.bears))
                 view0.container_bear_result.visibility = View.VISIBLE
             } else {
                 view0.container_bear_result.visibility = View.GONE
@@ -156,7 +134,7 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_vine.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_vine_litr.text =
-                    (String.format("%.2f", it * COEF_VINE) + getString(R.string.litrs) + getString(R.string.vines))
+                    (String.format("%.2f", it) + getString(R.string.litrs) + getString(R.string.vines))
                 view0.container_vine_result.visibility = View.VISIBLE
             } else {
                 view0.container_vine_result.visibility = View.GONE
@@ -166,7 +144,7 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_vodka.observe(this as LifecycleOwner) {
             if (it != null && it != 0f) {
                 view0.tvResult_value_vodka_litr.text =
-                    (String.format("%.2f", it * COEF_VODKA) + getString(R.string.litrs) + getString(R.string.vodkas))
+                    (String.format("%.2f", it) + getString(R.string.litrs) + getString(R.string.vodkas))
                 view0.container_vodka_result.visibility = View.VISIBLE
             } else {
                 view0.container_vodka_result.visibility = View.GONE
@@ -271,8 +249,8 @@ class BottomSheetFragment : Fragment() {
         dataModel.meatValueIsNoEmpty.value =
             if (dataModel.result_value_fish.value!! > 0f || dataModel.result_value_chicken.value!! > 0f || dataModel.result_value_pig.value!! > 0f || dataModel.result_value_muu.value!! > 0f) true else false
         dataModel.alcoValueIsNoEmpty.value =
-            if (dataModel.result_value_alco.value!! > 0f || dataModel.result_value_bear.value!! > 0f || dataModel.result_value_vine.value!! > 0f || dataModel.result_value_vodka.value!! > 0f) true else false
-        }
+            if (dataModel.result_value_bear.value!! > 0f || dataModel.result_value_vine.value!! > 0f || dataModel.result_value_vodka.value!! > 0f) true else false
+    }
 
 
     fun shareOnClick(
@@ -374,7 +352,6 @@ class BottomSheetFragment : Fragment() {
             result_value_bread.value = 0f
             result_value_veget.value = 0f
 
-            result_value_alco.value = 0f
             result_value_bear.value = 0f
             result_value_vine.value = 0f
             result_value_vodka.value = 0f

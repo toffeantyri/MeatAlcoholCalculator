@@ -3,6 +3,14 @@ package ru.calcs.meatcalculator.adapters
 import android.util.Log
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
+
+
+//КОЭФИЦИЕНТ УЖАРКИ
+const val COEF_FISH = 1.2F
+const val COEF_CHIKEN = 1.3F
+const val COEF_PIG = 1.35f
+const val COEF_MUU = 1.4f
+
 class MeatResultReceiverSenderClass(dataModel : DataModelView) {
     private val dataModelInner = dataModel
 
@@ -20,28 +28,28 @@ class MeatResultReceiverSenderClass(dataModel : DataModelView) {
 
     var fish_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_fish.value = value
+            field = value * COEF_FISH
+            dataModelInner.result_value_fish.value = value * COEF_FISH
         }
 
     var chiken_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_chicken.value = value
+            field = value * COEF_CHIKEN
+            dataModelInner.result_value_chicken.value = value * COEF_CHIKEN
 
         }
 
     var pig_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_pig.value = value
+            field = value * COEF_PIG
+            dataModelInner.result_value_pig.value = value * COEF_PIG
 
         }
 
     var muu_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_muu.value = value
+            field = value * COEF_MUU
+            dataModelInner.result_value_muu.value = value * COEF_MUU
 
         }
 
@@ -97,8 +105,8 @@ class MeatResultReceiverSenderClass(dataModel : DataModelView) {
             muu_value > 0 -> {muu_value}
             else -> 0f
         }
-        val coefOne = if (meatKGvalue / x_meat_people < 0.8f) 0.12f else 0.08f
-        bread_value = (meatKGvalue / 0.3f) * coefOne
+        val coefOne = if (meatKGvalue / x_meat_people < 1f) 0.12f else 0.1f
+        bread_value = (meatKGvalue / 0.35f) * coefOne * x_meat_people
     }
 
     fun howManyVeget() {
@@ -109,8 +117,8 @@ class MeatResultReceiverSenderClass(dataModel : DataModelView) {
             muu_value > 0 -> {muu_value}
             else -> 0f
         }
-        val coefOne = if (meatKGvalue / x_meat_people < 0.8f) 0.15f else 0.1f
-        veget_value = (meatKGvalue / 0.3f) * coefOne
+        val coefOne = if (meatKGvalue / x_meat_people < 1f) 0.15f else 0.11f
+        veget_value = (meatKGvalue / 0.35f) * coefOne * x_meat_people
     }
 
 

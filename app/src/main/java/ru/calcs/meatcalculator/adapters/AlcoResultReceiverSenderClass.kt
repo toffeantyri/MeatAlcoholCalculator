@@ -3,6 +3,11 @@ package ru.calcs.meatcalculator.adapters
 import android.util.Log
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
+//СКОЛЬКО ДЛЯ 1 ОПЬЯНЕНИЯ (типа порция на пару часов)
+const val COEF_BEAR = 1.5f
+const val COEF_VINE = 0.7f
+const val COEF_VODKA = 0.2f
+
 class AlcoResultReceiverSenderClass(dataModel : DataModelView) {
     private val dataModelInner = dataModel
 
@@ -20,26 +25,28 @@ class AlcoResultReceiverSenderClass(dataModel : DataModelView) {
 
     var allAlco_value: Float = 0f
         set(value) {
+            bear_value = value * 0.2f
+            vine_value = value * 0.25f
+            vodka_value = value * 0.55f
             field = value
-            dataModelInner.result_value_alco.value = value
         }
 
     var bear_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_bear.value = value
+            field = value * COEF_BEAR
+            dataModelInner.result_value_bear.value = value* COEF_BEAR
         }
 
     var vine_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_vine.value = value
+            field = value * COEF_VINE
+            dataModelInner.result_value_vine.value = value * COEF_VINE
         }
 
     var vodka_value: Float = 0f
         set(value) {
-            field = value
-            dataModelInner.result_value_vodka.value = value
+            field = value * COEF_VODKA
+            dataModelInner.result_value_vodka.value = value * COEF_VODKA
         }
 
     fun clearLastReuslt() {
@@ -69,6 +76,7 @@ class AlcoResultReceiverSenderClass(dataModel : DataModelView) {
             3 -> 4.5f //over
             else -> 1.0f
         }
+
         return (1 * coefTime * x_alco_people)
     }
 }

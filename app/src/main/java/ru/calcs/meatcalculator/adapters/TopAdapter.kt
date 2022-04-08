@@ -46,7 +46,6 @@ class TopAdapter(dataModel: DataModelView) :
         val switch_bread = itemView.findViewById<SwitchMaterial>(R.id.switch_bread)
         val switch_veget = itemView.findViewById<SwitchMaterial>(R.id.switch_veget)
 
-
         fun bindView(position: Int) {
             title.text = list[position].mainTitle
             column1_title.text = list[position].column1Title
@@ -79,6 +78,8 @@ class TopAdapter(dataModel: DataModelView) :
                 val numRadio2Id : Int = listIdColumnRadio2.indexOf(radioGroup2.checkedRadioButtonId)
 
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
+                    edLayout.isErrorEnabled = false
+                    edLayout.error = null
                     if (position == 0) {
                         val meatClass = MeatResultReceiverSenderClass(dataModelInner)
                         meatClass.clearLastResult()
@@ -133,6 +134,7 @@ class TopAdapter(dataModel: DataModelView) :
                     }
                     onClickBtnTestBottomSheet()
                 } else {
+                    edLayout.isErrorEnabled = true
                     edLayout.error = "Введите количество человек"
                 }
             }

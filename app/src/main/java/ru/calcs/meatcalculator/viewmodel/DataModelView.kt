@@ -77,13 +77,6 @@ class DataModelView : ViewModel() {
     }
 
     //---------------------------------------------------------------------------------------
-    //общее количество алкоголя
-    val result_value_alco: MutableLiveData<Float> by lazy {
-        MutableLiveData<Float>()
-    }
-    init{
-        result_value_alco.value = null
-    }
     // количество пива
     val result_value_bear: MutableLiveData<Float> by lazy {
         MutableLiveData<Float>()
