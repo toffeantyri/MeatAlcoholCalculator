@@ -1,21 +1,17 @@
 package ru.calcs.meatcalculator.adapters
 
-import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import ru.calcs.meatcalculator.BottomSheetFragment
 import ru.calcs.meatcalculator.R
-import ru.calcs.meatcalculator.ViewBottomSheetsClass
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
 const val TAG = "MyLog"
@@ -28,7 +24,6 @@ class TopAdapter(dataModel: DataModelView) :
 
     val listIdColumnRadio1: ArrayList<Int> = arrayListOf()
     val listIdColumnRadio2: ArrayList<Int> = arrayListOf()
-    val resultClass = ViewBottomSheetsClass(dataModelInner)
 
 
     inner class TopHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,8 +46,6 @@ class TopAdapter(dataModel: DataModelView) :
         val switch_bread = itemView.findViewById<SwitchMaterial>(R.id.switch_bread)
         val switch_veget = itemView.findViewById<SwitchMaterial>(R.id.switch_veget)
 
-        var countPeopleMeat = 1
-        var countPeopleAlco = 1
 
         fun bindView(position: Int) {
             title.text = list[position].mainTitle
@@ -82,82 +75,82 @@ class TopAdapter(dataModel: DataModelView) :
         fun bindTap(position: Int) {
 
             btn.setOnClickListener {
-                clearCurrentResultFromPosition(position)
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
-
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
-
                     if (position == 0) {
-                        countPeopleMeat = edText.text.toString().toInt()
-                        resultClass.x_meat_people = countPeopleMeat.toFloat()
+                        val meatClass = MeatResultReceiverSenderClass(dataModelInner)
+                        meatClass.clearLastResult()
+                        val countPeopleMeat: Int = edText.text.toString().toInt()
+                        meatClass.x_meat_people = countPeopleMeat.toFloat()
+
                         when (radioGroup1.checkedRadioButtonId) {
                             //рыбы
                             c1_r1.id -> {
-                                resultClass.fish_value = howManyMeatorAlcoAllNoType(
+                                meatClass.fish_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleMeat, radioGroup2.checkedRadioButtonId
                                 )
                             }
                             //куры
                             c1_r2.id -> {
-                                resultClass.chiken_value = howManyMeatorAlcoAllNoType(
+                                meatClass.chiken_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleMeat, radioGroup2.checkedRadioButtonId
                                 )
                             }
                             //свинины
                             c1_r3.id -> {
-                                resultClass.pig_value = howManyMeatorAlcoAllNoType(
+                                meatClass.pig_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleMeat, radioGroup2.checkedRadioButtonId
                                 )
                             }
                             //говяд
                             c1_r4.id -> {
-                                resultClass.muu_value = howManyMeatorAlcoAllNoType(
+                                meatClass.muu_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleMeat, radioGroup2.checkedRadioButtonId
                                 )
                             }
                         }
-                        if (switch_bread.visibility == View.VISIBLE && switch_bread.isChecked) resultClass.howManyBread()
-                        if (switch_veget.visibility == View.VISIBLE && switch_veget.isChecked) resultClass.howManyVeget()
-
+                        if (switch_bread.visibility == View.VISIBLE && switch_bread.isChecked) meatClass.howManyBread()
+                        if (switch_veget.visibility == View.VISIBLE && switch_veget.isChecked) meatClass.howManyVeget()
+                        meatClass.setCheckMeatIsNotEmpty()
                     } else if (position == 1) {
-                        countPeopleAlco = edText.text.toString().toInt()
-                        resultClass.x_alco_people = countPeopleAlco.toFloat()
+                        val alcoClass = AlcoResultReceiverSenderClass(dataModelInner)
+                        alcoClass.clearLastReuslt()
+                        val countPeopleAlco: Int = edText.text.toString().toInt()
+                        alcoClass.x_alco_people = countPeopleAlco.toFloat()
+
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее алко
                             c1_r1.id -> {
-                                resultClass.allAlco_value = howManyMeatorAlcoAllNoType(
+                                alcoClass.allAlco_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleAlco, radioGroup2.checkedRadioButtonId
                                 )
                             }
                             //пива
                             c1_r2.id -> {
-                                resultClass.bear_value = howManyMeatorAlcoAllNoType(
+                                alcoClass.bear_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleAlco, radioGroup2.checkedRadioButtonId
                                 )
                             }
                             //вина
                             c1_r3.id -> {
-                                resultClass.vine_value = howManyMeatorAlcoAllNoType(
+                                alcoClass.vine_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleAlco, radioGroup2.checkedRadioButtonId
                                 )
                             }
                             //крепкого
                             c1_r4.id -> {
-                                resultClass.vodka_value = howManyMeatorAlcoAllNoType(
+                                alcoClass.vodka_value = howManyMeatorAlcoAllNoType(
                                     position, countPeopleAlco, radioGroup2.checkedRadioButtonId
                                 )
                             }
                         }
-
+                        alcoClass.setCheckAlcoIsNotEmpty()
                     }
-
                     onClickBtnTestBottomSheet()
                 } else {
                     edLayout.error = "Введите количество человек"
                 }
-                resultClass.setCheckMeatIsNotEmpty()
-                resultClass.setCheckAlcoIsNotEmpty()
             }
         }
     }
@@ -213,24 +206,5 @@ class TopAdapter(dataModel: DataModelView) :
         return countProd
     }
 
-    fun clearCurrentResultFromPosition(pos: Int) {
-        if (pos == 0) {
-            dataModelInner.meatValueIsNoEmpty.value = false
-            dataModelInner.main_titleResult_x_people_meat.value = null
-            dataModelInner.result_value_fish.value = null
-            dataModelInner.result_value_chicken.value = null
-            dataModelInner.result_value_pig.value = null
-            dataModelInner.result_value_muu.value = null
-            dataModelInner.result_value_bread.value = null
-            dataModelInner.result_value_veget.value = null
-        } else if (pos == 1) {
-            dataModelInner.alcoValueIsNoEmpty.value = false
-            dataModelInner.main_titleResult_x_people_alco.value = null
-            dataModelInner.result_value_alco.value = null
-            dataModelInner.result_value_bear.value = null
-            dataModelInner.result_value_vine.value = null
-            dataModelInner.result_value_vodka.value = null
-        }
-    }
 
 }

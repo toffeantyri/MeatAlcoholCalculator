@@ -1,10 +1,9 @@
-package ru.calcs.meatcalculator
+package ru.calcs.meatcalculator.adapters
 
 import android.util.Log
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 
-class ViewBottomSheetsClass(dataModel: DataModelView) {
-
+class MeatResultReceiverSenderClass(dataModel : DataModelView) {
     private val dataModelInner = dataModel
 
     var x_meat_people: Float = 0f
@@ -16,23 +15,9 @@ class ViewBottomSheetsClass(dataModel: DataModelView) {
     private var meatIsNotEmpty: Boolean = false
         set(value) {
             field = value
-            Log.d(TAG, "meatIsNotEmpty $field -> $value")
+            Log.d(ru.calcs.meatcalculator.view.TAG, "meatIsNotEmpty $field -> $value")
             dataModelInner.meatValueIsNoEmpty.value = value
         }
-
-    var x_alco_people: Float = 0f
-        set(value) {
-            field = value
-            dataModelInner.main_titleResult_x_people_alco.value = value
-        }
-
-    private var alcoIsNotEmpty: Boolean = false
-        set(value) {
-            field = value
-            Log.d(TAG, "alcoIsNotEmpty $field -> $value")
-            dataModelInner.alcoValueIsNoEmpty.value = value
-        }
-
 
     var fish_value: Float = 0f
         set(value) {
@@ -73,29 +58,16 @@ class ViewBottomSheetsClass(dataModel: DataModelView) {
             dataModelInner.result_value_veget.value = value
         }
 
-    var allAlco_value: Float = 0f
-        set(value) {
-            field = value
-            dataModelInner.result_value_alco.value = value
-        }
-
-    var bear_value: Float = 0f
-        set(value) {
-            field = value
-            dataModelInner.result_value_bear.value = value
-        }
-
-    var vine_value: Float = 0f
-        set(value) {
-            field = value
-            dataModelInner.result_value_vine.value = value
-        }
-
-    var vodka_value: Float = 0f
-        set(value) {
-            field = value
-            dataModelInner.result_value_vodka.value = value
-        }
+    fun clearLastResult(){
+        x_meat_people = 0f
+        meatIsNotEmpty = false
+        fish_value = 0f
+        chiken_value = 0f
+        pig_value = 0f
+        muu_value = 0f
+        bread_value = 0f
+        veget_value = 0f
+    }
 
     fun setCheckMeatIsNotEmpty(){
         meatIsNotEmpty = when {
@@ -103,15 +75,6 @@ class ViewBottomSheetsClass(dataModel: DataModelView) {
             chiken_value > 0f -> true
             pig_value > 0f -> true
             muu_value > 0f -> true
-            else ->  false
-        }
-    }
-
-    fun setCheckAlcoIsNotEmpty(){
-        alcoIsNotEmpty = when {
-            bear_value > 0f -> true
-            vine_value > 0f -> true
-            vodka_value > 0f -> true
             else ->  false
         }
     }
@@ -139,5 +102,4 @@ class ViewBottomSheetsClass(dataModel: DataModelView) {
         val coefOne = if (meatKGvalue / x_meat_people < 0.8f) 0.15f else 0.1f
         veget_value = (meatKGvalue / 0.3f) * coefOne
     }
-
 }

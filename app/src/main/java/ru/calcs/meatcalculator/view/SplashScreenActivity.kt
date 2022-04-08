@@ -1,9 +1,10 @@
-package ru.calcs.meatcalculator
+package ru.calcs.meatcalculator.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_splash_screen.*
+import ru.calcs.meatcalculator.R
 
 class SplashScreenActivity : AppCompatActivity() {
 

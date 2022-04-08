@@ -1,4 +1,4 @@
-package ru.calcs.meatcalculator
+package ru.calcs.meatcalculator.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,13 +14,12 @@ import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
-import com.yandex.mobile.ads.common.InitializationListener
-import com.yandex.mobile.ads.common.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import ru.calcs.meatcalculator.R
 import ru.calcs.meatcalculator.adapters.ShablonDataList
 import ru.calcs.meatcalculator.adapters.TopAdapter
 import ru.calcs.meatcalculator.viewmodel.DataModelView

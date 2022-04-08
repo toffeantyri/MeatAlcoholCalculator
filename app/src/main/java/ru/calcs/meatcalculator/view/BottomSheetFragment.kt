@@ -1,4 +1,4 @@
-package ru.calcs.meatcalculator
+package ru.calcs.meatcalculator.view
 
 
 import android.content.Intent
@@ -15,6 +15,7 @@ import com.yandex.mobile.ads.common.*
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.view.*
+import ru.calcs.meatcalculator.R
 import ru.calcs.meatcalculator.adapters.AppPreference
 import ru.calcs.meatcalculator.viewmodel.DataModelView
 import java.lang.StringBuilder
@@ -57,7 +58,8 @@ class BottomSheetFragment : Fragment() {
 
             if (it != null && it.toInt() > 0) {
                 view0.main_title_x_people_meat.text =
-                    (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt().toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
+                    (getString(R.string.RESULT_DESC_ITOGO1) + it.toInt()
+                        .toString() + peopleTextCount + getString(R.string.RESULT_DESC_ITOGO2))
             }
         }
         dataModel.meatValueIsNoEmpty.observe(this as LifecycleOwner) {
@@ -135,9 +137,7 @@ class BottomSheetFragment : Fragment() {
                 dataModel.result_value_bear.value = (it * COEF_BEAR) * 0.2f
                 dataModel.result_value_vine.value = (it * COEF_VINE) * 0.25f
                 dataModel.result_value_vodka.value = (it * COEF_VODKA) * 0.55f
-                view0.main_title_x_people_alco.visibility = View.VISIBLE
-            } else {
-                view0.main_title_x_people_alco.visibility = View.GONE
+                dataModel.result_value_alco.value = 0f
             }
         }
 
@@ -148,7 +148,6 @@ class BottomSheetFragment : Fragment() {
                     it * COEF_BEAR
                 ) + getString(R.string.litrs) + getString(R.string.bears))
                 view0.container_bear_result.visibility = View.VISIBLE
-
             } else {
                 view0.container_bear_result.visibility = View.GONE
             }
@@ -268,13 +267,13 @@ class BottomSheetFragment : Fragment() {
         dataModel.result_value_veget.value = map.getValue("vegetable")
         dataModel.main_titleResult_x_people_meat.value = map.getValue("people_count_meat")
         dataModel.main_titleResult_x_people_alco.value = map.getValue("people_count_alco")
-        if (dataModel.result_value_fish.value!! > 0f || dataModel.result_value_chicken.value!! > 0f || dataModel.result_value_pig.value!! > 0f || dataModel.result_value_muu.value!! > 0f) {
-            dataModel.meatValueIsNoEmpty.value = true
+
+        dataModel.meatValueIsNoEmpty.value =
+            if (dataModel.result_value_fish.value!! > 0f || dataModel.result_value_chicken.value!! > 0f || dataModel.result_value_pig.value!! > 0f || dataModel.result_value_muu.value!! > 0f) true else false
+        dataModel.alcoValueIsNoEmpty.value =
+            if (dataModel.result_value_alco.value!! > 0f || dataModel.result_value_bear.value!! > 0f || dataModel.result_value_vine.value!! > 0f || dataModel.result_value_vodka.value!! > 0f) true else false
         }
-        if (dataModel.result_value_bear.value!! > 0f || dataModel.result_value_vine.value!! > 0f || dataModel.result_value_vodka.value!! > 0f) {
-            dataModel.alcoValueIsNoEmpty.value = true
-        }
-    }
+
 
     fun shareOnClick(
         fish: Float,
@@ -312,10 +311,15 @@ class BottomSheetFragment : Fragment() {
             }
 
             if (bread != 0f) {
-                append(String.format("%.0f", bread*1000) + getString(R.string.gramm) + getString(R.string.breads) + "\n")
+                append(
+                    String.format(
+                        "%.0f",
+                        bread * 1000
+                    ) + getString(R.string.gramm) + getString(R.string.breads) + "\n"
+                )
             }
             if (veget != 0f) {
-                append(String.format("%.2f", veget) +getString(R.string.kg) + getString(R.string.vegetables) + "\n")
+                append(String.format("%.2f", veget) + getString(R.string.kg) + getString(R.string.vegetables) + "\n")
             }
 
             if (xPeopleAlco != 0f) {
@@ -355,14 +359,14 @@ class BottomSheetFragment : Fragment() {
 
     fun clearResultOnClick() {
         dataModel.apply {
-            result_value_fish.value = 0f
-            result_value_alco.value = 0f
 
             main_titleResult_x_people_meat.value = 0f
             main_titleResult_x_people_alco.value = 0f
+
             meatValueIsNoEmpty.value = false
             alcoValueIsNoEmpty.value = false
 
+            result_value_fish.value = 0f
             result_value_chicken.value = 0f
             result_value_pig.value = 0f
             result_value_muu.value = 0f
@@ -370,6 +374,7 @@ class BottomSheetFragment : Fragment() {
             result_value_bread.value = 0f
             result_value_veget.value = 0f
 
+            result_value_alco.value = 0f
             result_value_bear.value = 0f
             result_value_vine.value = 0f
             result_value_vodka.value = 0f
