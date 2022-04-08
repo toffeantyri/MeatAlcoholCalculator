@@ -73,41 +73,33 @@ class TopAdapter(dataModel: DataModelView) :
         }
 
         fun bindTap(position: Int) {
-
             btn.setOnClickListener {
                 listIdColumnRadio1.addAll(arrayOf(c1_r1.id, c1_r2.id, c1_r3.id, c1_r4.id))
                 listIdColumnRadio2.addAll(arrayOf(c2_r1.id, c2_r2.id, c2_r3.id, c2_r4.id))
+                val numRadio2Id : Int = listIdColumnRadio2.indexOf(radioGroup2.checkedRadioButtonId)
+
                 if (edText.text.toString() != "" && edText.text.toString() != "0") {
                     if (position == 0) {
                         val meatClass = MeatResultReceiverSenderClass(dataModelInner)
                         meatClass.clearLastResult()
                         val countPeopleMeat: Int = edText.text.toString().toInt()
                         meatClass.x_meat_people = countPeopleMeat.toFloat()
-
                         when (radioGroup1.checkedRadioButtonId) {
                             //рыбы
                             c1_r1.id -> {
-                                meatClass.fish_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleMeat, radioGroup2.checkedRadioButtonId
-                                )
+                                meatClass.fish_value = meatClass.howManyMeat(numRadio2Id)
                             }
                             //куры
                             c1_r2.id -> {
-                                meatClass.chiken_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleMeat, radioGroup2.checkedRadioButtonId
-                                )
+                                meatClass.chiken_value = meatClass.howManyMeat(numRadio2Id)
                             }
                             //свинины
                             c1_r3.id -> {
-                                meatClass.pig_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleMeat, radioGroup2.checkedRadioButtonId
-                                )
+                                meatClass.pig_value = meatClass.howManyMeat(numRadio2Id)
                             }
                             //говяд
                             c1_r4.id -> {
-                                meatClass.muu_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleMeat, radioGroup2.checkedRadioButtonId
-                                )
+                                meatClass.muu_value = meatClass.howManyMeat(numRadio2Id)
                             }
                         }
                         if (switch_bread.visibility == View.VISIBLE && switch_bread.isChecked) meatClass.howManyBread()
@@ -122,27 +114,19 @@ class TopAdapter(dataModel: DataModelView) :
                         when (radioGroup1.checkedRadioButtonId) {
                             //общее алко
                             c1_r1.id -> {
-                                alcoClass.allAlco_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleAlco, radioGroup2.checkedRadioButtonId
-                                )
+                                alcoClass.allAlco_value = alcoClass.howManyAlco(numRadio2Id)
                             }
                             //пива
                             c1_r2.id -> {
-                                alcoClass.bear_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleAlco, radioGroup2.checkedRadioButtonId
-                                )
+                                alcoClass.bear_value = alcoClass.howManyAlco(numRadio2Id)
                             }
                             //вина
                             c1_r3.id -> {
-                                alcoClass.vine_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleAlco, radioGroup2.checkedRadioButtonId
-                                )
+                                alcoClass.vine_value = alcoClass.howManyAlco(numRadio2Id)
                             }
                             //крепкого
                             c1_r4.id -> {
-                                alcoClass.vodka_value = howManyMeatorAlcoAllNoType(
-                                    position, countPeopleAlco, radioGroup2.checkedRadioButtonId
-                                )
+                                alcoClass.vodka_value = alcoClass.howManyAlco(numRadio2Id)
                             }
                         }
                         alcoClass.setCheckAlcoIsNotEmpty()
@@ -179,32 +163,5 @@ class TopAdapter(dataModel: DataModelView) :
         Log.d(TAG, list.toString())
         notifyDataSetChanged()
     }
-
-    fun howManyMeatorAlcoAllNoType(pos: Int, peopleCount: Int, toggleTitle2: Int): Float {
-        var coefTime: Float
-        var countProd: Float = 1f
-        if (pos == 0) {
-            coefTime = when (toggleTitle2) {
-                listIdColumnRadio2[0] -> 1.1f //low
-                listIdColumnRadio2[1] -> 1.8f    // medium
-                listIdColumnRadio2[2] -> 2.5f    //max
-                listIdColumnRadio2[3] -> 4f    //over
-                else -> 1.0f
-            }
-            countProd = (0.35f * peopleCount * coefTime)
-        }
-        if (pos == 1) {
-            coefTime = when (toggleTitle2) {
-                listIdColumnRadio2[0] -> 1.0f    //low
-                listIdColumnRadio2[1] -> 1.9f   // medium
-                listIdColumnRadio2[2] -> 2.75f   //max
-                listIdColumnRadio2[3] -> 4.5f //over
-                else -> 1.0f
-            }
-            countProd = (1 * coefTime * peopleCount)
-        }
-        return countProd
-    }
-
 
 }

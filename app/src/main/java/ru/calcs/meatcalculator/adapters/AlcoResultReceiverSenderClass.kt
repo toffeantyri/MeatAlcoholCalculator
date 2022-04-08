@@ -15,7 +15,6 @@ class AlcoResultReceiverSenderClass(dataModel : DataModelView) {
     private var alcoIsNotEmpty: Boolean = false
         set(value) {
             field = value
-            Log.d(ru.calcs.meatcalculator.view.TAG, "alcoIsNotEmpty $field -> $value")
             dataModelInner.alcoValueIsNoEmpty.value = value
         }
 
@@ -43,7 +42,7 @@ class AlcoResultReceiverSenderClass(dataModel : DataModelView) {
             dataModelInner.result_value_vodka.value = value
         }
 
-    fun clearLastReuslt(){
+    fun clearLastReuslt() {
         x_alco_people = 0f
         alcoIsNotEmpty = false
         allAlco_value = 0f
@@ -52,15 +51,24 @@ class AlcoResultReceiverSenderClass(dataModel : DataModelView) {
         vodka_value = 0f
     }
 
-    fun setCheckAlcoIsNotEmpty(){
+    fun setCheckAlcoIsNotEmpty() {
         alcoIsNotEmpty = when {
             allAlco_value > 0f -> true
             bear_value > 0f -> true
             vine_value > 0f -> true
             vodka_value > 0f -> true
-            else ->  false
+            else -> false
         }
     }
 
-
+    fun howManyAlco(radioButtonC2Num: Int): Float {
+        val coefTime = when (radioButtonC2Num) {
+            0 -> 1.0f    //low
+            1 -> 1.9f   // medium
+            2 -> 2.75f   //max
+            3 -> 4.5f //over
+            else -> 1.0f
+        }
+        return (1 * coefTime * x_alco_people)
+    }
 }

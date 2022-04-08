@@ -15,7 +15,6 @@ class MeatResultReceiverSenderClass(dataModel : DataModelView) {
     private var meatIsNotEmpty: Boolean = false
         set(value) {
             field = value
-            Log.d(ru.calcs.meatcalculator.view.TAG, "meatIsNotEmpty $field -> $value")
             dataModelInner.meatValueIsNoEmpty.value = value
         }
 
@@ -79,6 +78,17 @@ class MeatResultReceiverSenderClass(dataModel : DataModelView) {
         }
     }
 
+    fun howManyMeat(radioButtonC2Num: Int) : Float{
+        val coefTime = when (radioButtonC2Num) {
+                0 -> 1.1f //low
+                1 -> 1.8f    // medium
+                2 -> 2.5f    //max
+                3 -> 4f    //over
+                else -> 1.0f
+            }
+           return (0.35f * x_meat_people * coefTime)
+        }
+
     fun howManyBread() {
         val meatKGvalue : Float = when{
             fish_value > 0 -> {fish_value}
@@ -102,4 +112,6 @@ class MeatResultReceiverSenderClass(dataModel : DataModelView) {
         val coefOne = if (meatKGvalue / x_meat_people < 0.8f) 0.15f else 0.1f
         veget_value = (meatKGvalue / 0.3f) * coefOne
     }
+
+
 }
