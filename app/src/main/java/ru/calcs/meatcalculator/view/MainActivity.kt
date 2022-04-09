@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         if (this::adapterTop.isLateinit) {
             adapterTop = TopAdapter(dataModel)
         }
+        //adapterTop = TopAdapter(dataModel)
         if (rcView_TopSelector.isEmpty()) {
             Log.d(TAG, "init rc")
             rcView_TopSelector.apply {
