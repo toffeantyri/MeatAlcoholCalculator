@@ -120,12 +120,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initTopRV() {
-        if (this::adapterTop.isLateinit) {
-            adapterTop = TopAdapter(dataModel)
-        }
-        //adapterTop = TopAdapter(dataModel)
+        adapterTop = TopAdapter(dataModel)
         if (rcView_TopSelector.isEmpty()) {
-            Log.d(TAG, "init rc")
             rcView_TopSelector.apply {
                 layoutManager =
                     LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
