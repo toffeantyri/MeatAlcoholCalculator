@@ -362,7 +362,7 @@ class BottomSheetFragment : Fragment() {
 
 
     fun initAndloadInterStitialAd() {
-        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id_test))
+        myInterStitialAd?.setAdUnitId(getString(R.string.yandex_interstitial_id))
         myInterStitialAd?.setInterstitialAdEventListener(object : InterstitialAdEventListener {
             override fun onAdLoaded() {
                 Log.d(TAG, "InterStitial Ad is Loaded Succesfull")
